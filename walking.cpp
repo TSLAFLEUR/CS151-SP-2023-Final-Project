@@ -15,7 +15,7 @@ spriteWalk::spriteWalk(std::string name)
         }
         else
         {
-            std::cout << "error loading character choosing default character" << std::endl;
+            //std::cout << "error loading character choosing default character" << std::endl;
             characterChoice = spriteSelection[0];
         }
     }
