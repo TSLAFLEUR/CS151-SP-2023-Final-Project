@@ -9,6 +9,7 @@
  * @acknowledgment https://code.markrichards.ninja/sfml/how-to-create-simple-buttons-for-your-sfml-game
  * 
  * 
+ * 
  */
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -16,7 +17,11 @@
 
 int main()
 {
-   sf::RenderWindow window(sf::VideoMode(800, 500), "Menu!");
+    sf::RenderWindow window(sf::VideoMode(800, 500), "Menu!");
+    sf::RectangleShape rect(sf::Vector2f(128.0f, 128.0f));
+    rect.setFillColor(sf::Color::Black);
+    rect.setScale(800.0f, 500.0f);
+   
 
 //menu banner
     Button menu;
@@ -82,24 +87,35 @@ int main()
             
                 
 
-           menu.update(event, window);    
-           party.update(event, window);
-           items.update(event, window);
-           magic.update(event, window);
-           quit.update(event, window);
+        menu.update(event, window);    
+        party.update(event, window);
+        items.update(event, window);
+        magic.update(event, window);
+        quit.update(event, window);
        }
 
-       window.clear();
-       
-       window.draw(menu);
-       window.draw(party);
-       window.draw(items);
-       window.draw(magic);
-       window.draw(quit);
-       if(event.type == sf::Event::KeyPressed)
+       //window.clear(sf::Color::Black);
+       if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
        {
-            //if(event.key.code == sf::Mouse::b)
-
+            window.draw(rect);
+            window.draw(menu);
+            window.draw(party);
+            window.draw(items);
+            window.draw(magic);
+            window.draw(quit);
+       }
+       
+       
+       //window.draw(rect);
+       if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition().x >0 && sf::Mouse::getPosition().x<800)
+       {
+            
+            
+            rect.setFillColor(sf::Color::Black);
+            rect.setScale(800.0f, 500.0f);
+            //window.draw(rect);
+            
+            
        }
 
        window.display();

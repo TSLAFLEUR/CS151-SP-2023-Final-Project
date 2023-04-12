@@ -124,7 +124,18 @@ void Button::update(sf::Event& e, sf::RenderWindow& window)
         {
             if(mouseInButton)
             {
-                
+                sf::RectangleShape rect(sf::Vector2f(128.0f, 128.0f));
+                rect.setFillColor(sf::Color::Black);
+                rect.setScale(800.0f, 500.0f);
+                window.draw(rect);
+                Button back;
+                back.setText("BACK");
+                back.setPosition({400, 425});
+                back.setSize({200, 71});
+                back.setColor(sf::Color(0,0,0));
+                back.setColorTextHover(sf::Color::Green);
+                back.setColorTextNormal(sf::Color::Red);
+                window.draw(back);
             }
             else
             {
@@ -132,6 +143,7 @@ void Button::update(sf::Event& e, sf::RenderWindow& window)
             }
         }
     }
+    /*
     if (e.type == sf::Event::MouseButtonReleased)
     {
         if (e.mouseButton.button==sf::Mouse::Left)
@@ -147,7 +159,7 @@ void Button::update(sf::Event& e, sf::RenderWindow& window)
                         mButton.setRotation(0);
                     }
                 }
-            }
+            }*/
 }
 
 void Button::draw(sf::RenderTarget& target,sf::RenderStates states) const
