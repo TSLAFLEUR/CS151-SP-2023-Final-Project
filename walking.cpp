@@ -15,46 +15,95 @@ spriteWalk::spriteWalk(std::string name)
         }
         else
         {
-            //std::cout << "error loading character choosing default character" << std::endl;
+            // std::cout << "error loading character choosing default character" << std::endl;
             characterChoice = spriteSelection[0];
+            offset = charOffset[0];
         }
     }
     charTexture.loadFromFile("walking sprites.png");
-    charSprite[0].setTexture(charTexture);
-    charSprite[1].setTexture(charTexture);
-    charSprite[2].setTexture(charTexture);
-    charSprite[3].setTexture(charTexture);
+    charSprite.setTexture(charTexture);
     if (characterChoice == spriteSelection[0])
     {
-        for (int i = 0; i < 4; i++)
-        {
-            charSprite[i].setTextureRect(sf::IntRect((i * 16), 0, 16, 16));
-            //charSprite[i].setOrigin(16.f / 2.f, 16.f / 2.f);
-        }
+        offset = charOffset[0];
     }
     else if (characterChoice == spriteSelection[1])
     {
-        for (int i = 0; i < 4; i++)
-        {
-            charSprite[i].setTextureRect(sf::IntRect((i * 16), 16, 16, 16));
-            //charSprite[i].setOrigin(16.f / 2.f, 16.f / 2.f);
-        }
+        offset = charOffset[1];
     }
     else if (characterChoice == spriteSelection[2])
     {
-        for (int i = 0; i < 4; i++)
-        {
-            charSprite[i].setTextureRect(sf::IntRect((i * 16), 32, 16, 16));
-           // charSprite[i].setOrigin(16.f / 2.f, 16.f / 2.f);
-        }
+        offset = charOffset[2];
     }
     else
     {
-        for (int i = 0; i < 4; i++)
-        {
-            charSprite[i].setTextureRect(sf::IntRect((i * 16), 48, 16, 16));
-            //charSprite[i].setOrigin(16.f / 2.f, 16.f / 2.f);
-        }
+        offset = charOffset[3];
     }
+    charSprite.setTextureRect(sf::IntRect(0, offset, 16, 16));
+}
 
+void characterWalking(spriteWalk &character)
+{
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+            // left key is pressed: move our character
+            // character.charSprite.setTextureRect(sf::IntRect(48, 0, 16, 16));
+            character.charSprite.move(-1.f, 0.f);
+            // if (clock.getElapsedTime().asSeconds() > 1.0f)
+            //{
+            if (character.charSprite.getTextureRect() == (sf::IntRect(48, character.offset, 16, 16)))
+            {
+                character.charSprite.setTextureRect(sf::IntRect(32, character.offset, 16, 16));
+            }
+            else
+            {
+                character.charSprite.setTextureRect(sf::IntRect(48, character.offset, 16, 16));
+            }
+            // }
+            // character.charSprite.setTextureRect(sf::IntRect(32, 0, 16, 16));
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            // left key is pressed: move our character
+            // character.charSprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
+            character.charSprite.move(0.f, -1.f);
+            if (character.charSprite.getTextureRect() == (sf::IntRect(96, character.offset, 16, 16)))
+            {
+                character.charSprite.setTextureRect(sf::IntRect(16, character.offset, 16, 16));
+            }
+            else
+            {
+                character.charSprite.setTextureRect(sf::IntRect(96, character.offset, 16, 16));
+            }
+        }
+
+       else  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            // left key is pressed: move our character
+            // character.charSprite.setTextureRect(sf::IntRect(64, 0, 16, 16));
+            character.charSprite.move(1.f, 0.f);
+            if (character.charSprite.getTextureRect() == (sf::IntRect(64, character.offset, 16, 16)))
+            {
+                character.charSprite.setTextureRect(sf::IntRect(80, character.offset, 16, 16));
+                character.charSprite.setOrigin(16.f / 2.f, 0.f / 2.f);
+            }
+            else
+            {
+                character.charSprite.setTextureRect(sf::IntRect(64, character.offset, 16, 16));
+                character.charSprite.setOrigin(16.f / 2.f, 0.f / 2.f);
+            }
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            // left key is pressed: move our character
+            // character.charSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
+            character.charSprite.move(0.f, 1.f);
+            if (character.charSprite.getTextureRect() == (sf::IntRect(112, character.offset, 16, 16)))
+            {
+                character.charSprite.setTextureRect(sf::IntRect(0, character.offset, 16, 16));
+            }
+            else
+            {
+                character.charSprite.setTextureRect(sf::IntRect(112, character.offset, 16, 16));
+            }
+        }
 }
