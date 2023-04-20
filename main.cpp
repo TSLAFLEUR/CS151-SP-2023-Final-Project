@@ -1,13 +1,13 @@
 /**
  * @file main.cpp
  * @author Zackary Morrow
- * @brief  This program testing class buton
+ * @brief  This program testing a menu system for the final project
  * @version 0.1
- * @date 2022-10-16
+ * @date 4-19-23
  * 
  * @copyright Copyright (c) 2022
  * @acknowledgment https://code.markrichards.ninja/sfml/how-to-create-simple-buttons-for-your-sfml-game
- * 
+ * compile command: g++ -std=c++11 main.cpp -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
  * 
  * 
  */
@@ -87,11 +87,11 @@ int main()
             
                 
 
-        menu.update(event, window);    
-        party.update(event, window);
-        items.update(event, window);
-        magic.update(event, window);
-        quit.update(event, window);
+        menu.updateMenu(event, window);    
+        party.updateParty(event, window);
+        items.updateItems(event, window);
+        magic.updateMagic(event, window);
+        quit.updateQuit(event, window);
        }
 
        //window.clear(sf::Color::Black);
@@ -103,6 +103,7 @@ int main()
             window.draw(items);
             window.draw(magic);
             window.draw(quit);
+            
        }
        
        
