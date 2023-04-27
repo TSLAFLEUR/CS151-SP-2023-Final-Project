@@ -182,17 +182,19 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window)
                 back.setColorTextNormal(sf::Color::Red);
                 window.draw(back);
                 */
+
                sf::RectangleShape partyMem1(sf::Vector2f(128.0f, 128.0f));
                partyMem1.setFillColor(sf::Color::Blue);
                partyMem1.setSize({300, 50});
                
-               partyMem1.setPosition({250, 100});
+               partyMem1.setPosition({400, 100});
+               partyMem1.setOrigin(partyMem1.getLocalBounds().width/2, partyMem1.getLocalBounds().height/2);
                sf::Text pm1Text;
                pm1Text.setFont(mFont);
                pm1Text.setString("Party member 1");
-               pm1Text.setOrigin({partyMem1.getGlobalBounds().width/2, partyMem1.getGlobalBounds().height/2});
-               pm1Text.setPosition(465, 135);
-               pm1Text.setCharacterSize(24);
+               pm1Text.setOrigin({pm1Text.getLocalBounds().width/2, pm1Text.getLocalBounds().height/2});
+               pm1Text.setPosition(partyMem1.getPosition().x, partyMem1.getPosition().y-10);
+               //pm1Text.setCharacterSize(24);
                window.draw(partyMem1);
                window.draw(pm1Text);
                
@@ -200,13 +202,14 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window)
                partyMem2.setFillColor(sf::Color::Blue);
                partyMem2.setSize({300, 50});
                
-               partyMem2.setPosition({250, 200});
+               partyMem2.setPosition({400, 200});
+               partyMem2.setOrigin(partyMem2.getLocalBounds().width/2, partyMem2.getLocalBounds().height/2);
                sf::Text pm2Text;
                pm2Text.setFont(mFont);
                pm2Text.setString("Party member 2");
-               pm2Text.setOrigin({partyMem2.getGlobalBounds().width/2, partyMem2.getGlobalBounds().height/2});
-               pm2Text.setPosition(465, 235);
-               pm2Text.setCharacterSize(24);
+               pm2Text.setOrigin({pm2Text.getLocalBounds().width/2, pm2Text.getLocalBounds().height/2});
+               pm2Text.setPosition(partyMem2.getPosition().x, partyMem2.getPosition().y-10);
+               //pm2Text.setCharacterSize(24);
                window.draw(partyMem2);
                window.draw(pm2Text);
 
@@ -214,13 +217,14 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window)
                partyMem3.setFillColor(sf::Color::Blue);
                partyMem3.setSize({300, 50});
                
-               partyMem3.setPosition({250, 300});
+               partyMem3.setPosition({400, 300});
+               partyMem3.setOrigin(partyMem3.getLocalBounds().width/2, partyMem3.getLocalBounds().height/2);
                sf::Text pm3Text;
                pm3Text.setFont(mFont);
                pm3Text.setString("Party member 3");
-               pm3Text.setOrigin({partyMem3.getGlobalBounds().width/2, partyMem3.getGlobalBounds().height/2});
-               pm3Text.setPosition(465, 335);
-               pm3Text.setCharacterSize(24);
+               pm3Text.setOrigin({pm3Text.getLocalBounds().width/2, pm3Text.getLocalBounds().height/2});
+               pm3Text.setPosition(partyMem3.getPosition().x, partyMem3.getPosition().y-10);
+               //pm3Text.setCharacterSize(24);
                window.draw(partyMem3);
                window.draw(pm3Text);
 
@@ -228,13 +232,14 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window)
                partyMem4.setFillColor(sf::Color::Blue);
                partyMem4.setSize({300, 50});
                
-               partyMem4.setPosition({250, 400});
+               partyMem4.setPosition({400, 400});
+               partyMem4.setOrigin(partyMem4.getLocalBounds().width/2, partyMem4.getLocalBounds().height/2);
                sf::Text pm4Text;
                pm4Text.setFont(mFont);
                pm4Text.setString("Party member 4");
-               pm4Text.setOrigin({partyMem4.getGlobalBounds().width/2, partyMem4.getGlobalBounds().height/2});
-               pm4Text.setPosition(465, 435);
-               pm4Text.setCharacterSize(24);
+               pm4Text.setOrigin({pm4Text.getLocalBounds().width/2, pm4Text.getLocalBounds().height/2});
+               pm4Text.setPosition(partyMem4.getPosition().x, partyMem4.getPosition().y-10);
+               //pm4Text.setCharacterSize(24);
                window.draw(partyMem4);
                window.draw(pm4Text);
             }
@@ -277,6 +282,62 @@ void Button::updateItems(sf::Event& e, sf::RenderWindow& window)
                 rect.setFillColor(sf::Color::Black);
                 rect.setScale(800.0f, 500.0f);
                 window.draw(rect);
+
+                sf::RectangleShape item1(sf::Vector2f(128.0f, 128.0f));
+                item1.setSize({300, 50});
+                item1.setFillColor(sf::Color::Red);
+                item1.setPosition({400, 100});
+                item1.setOrigin(item1.getLocalBounds().width/2, item1.getLocalBounds().height/2);
+                sf::Text i1text;
+                i1text.setFont(mFont);
+                i1text.setString("Item 1");
+                i1text.setOrigin(i1text.getLocalBounds().width/2, i1text.getLocalBounds().height/2);
+                i1text.setPosition(item1.getPosition().x, item1.getPosition().y-10);
+                window.draw(item1);
+                window.draw(i1text);
+
+                //second section
+                sf::RectangleShape item2(sf::Vector2f(128.0f, 128.0f));
+                item2.setSize({300, 50});
+                item2.setFillColor(sf::Color::Red);
+                item2.setPosition({400, 200});
+                item2.setOrigin(item2.getLocalBounds().width/2, item2.getLocalBounds().height/2);
+                sf::Text i2text;
+                i2text.setFont(mFont);
+                i2text.setString("Item 2");
+                i2text.setOrigin(i2text.getLocalBounds().width/2, i2text.getLocalBounds().height/2);
+                i2text.setPosition(item2.getPosition().x, item2.getPosition().y-10);
+                window.draw(item2);
+                window.draw(i2text);
+
+                //third section
+                sf::RectangleShape item3(sf::Vector2f(128.0f, 128.0f));
+                item3.setSize({300, 50});
+                item3.setFillColor(sf::Color::Red);
+                item3.setPosition({400, 300});
+                item3.setOrigin(item3.getLocalBounds().width/2, item3.getLocalBounds().height/2);
+                sf::Text i3text;
+                i3text.setFont(mFont);
+                i3text.setString("Item 3");
+                i3text.setOrigin(i3text.getLocalBounds().width/2, i3text.getLocalBounds().height/2);
+                i3text.setPosition(item3.getPosition().x, item3.getPosition().y-10);
+                window.draw(item3);
+                window.draw(i3text);
+
+                //fourth section
+                sf::RectangleShape item4(sf::Vector2f(128.0f, 128.0f));
+                item4.setSize({300, 50});
+                item4.setFillColor(sf::Color::Red);
+                item4.setPosition({400, 400});
+                item4.setOrigin(item4.getLocalBounds().width/2, item4.getLocalBounds().height/2);
+                sf::Text i4text;
+                i4text.setFont(mFont);
+                i4text.setString("Item 4");
+                i4text.setOrigin(i4text.getLocalBounds().width/2, i4text.getLocalBounds().height/2);
+                i4text.setPosition(item4.getPosition().x, item4.getPosition().y-10);
+                window.draw(item4);
+                window.draw(i4text);
+
             }
             else
             {
@@ -317,6 +378,89 @@ void Button::updateMagic(sf::Event& e, sf::RenderWindow& window)
                 rect.setFillColor(sf::Color::Black);
                 rect.setScale(800.0f, 500.0f);
                 window.draw(rect);
+
+                sf::RectangleShape item1(sf::Vector2f(128.0f, 128.0f));
+                item1.setSize({300, 50});
+                item1.setFillColor(sf::Color::Magenta);
+                item1.setPosition({400, 100});
+                item1.setOrigin(item1.getLocalBounds().width/2, item1.getLocalBounds().height/2);
+                sf::Text i1text;
+                i1text.setFont(mFont);
+                i1text.setString("Spell 1");
+                i1text.setOrigin(i1text.getLocalBounds().width/2, i1text.getLocalBounds().height/2);
+                i1text.setPosition(item1.getPosition().x, item1.getPosition().y-10);
+
+                sf::CircleShape icon1(20);
+                icon1.setFillColor(sf::Color::Magenta);
+                icon1.setPosition({200, 100});
+                icon1.setOrigin(icon1.getLocalBounds().width/2, icon1.getLocalBounds().height/2);
+
+                window.draw(item1);
+                window.draw(i1text);
+                window.draw(icon1);
+
+                //second section
+                sf::RectangleShape item2(sf::Vector2f(128.0f, 128.0f));
+                item2.setSize({300, 50});
+                item2.setFillColor(sf::Color::Magenta);
+                item2.setPosition({400, 200});
+                item2.setOrigin(item2.getLocalBounds().width/2, item2.getLocalBounds().height/2);
+                sf::Text i2text;
+                i2text.setFont(mFont);
+                i2text.setString("Spell 2");
+                i2text.setOrigin(i2text.getLocalBounds().width/2, i2text.getLocalBounds().height/2);
+                i2text.setPosition(item2.getPosition().x, item2.getPosition().y-10);
+
+                sf::CircleShape icon2(20);
+                icon2.setFillColor(sf::Color::Magenta);
+                icon2.setPosition({200, 200});
+                icon2.setOrigin(icon2.getLocalBounds().width/2, icon2.getLocalBounds().height/2);
+
+                window.draw(item2);
+                window.draw(i2text);
+                window.draw(icon2);
+
+                //third section
+                sf::RectangleShape item3(sf::Vector2f(128.0f, 128.0f));
+                item3.setSize({300, 50});
+                item3.setFillColor(sf::Color::Magenta);
+                item3.setPosition({400, 300});
+                item3.setOrigin(item3.getLocalBounds().width/2, item3.getLocalBounds().height/2);
+                sf::Text i3text;
+                i3text.setFont(mFont);
+                i3text.setString("Spell 3");
+                i3text.setOrigin(i3text.getLocalBounds().width/2, i3text.getLocalBounds().height/2);
+                i3text.setPosition(item3.getPosition().x, item3.getPosition().y-10);
+
+                sf::CircleShape icon3(20);
+                icon3.setFillColor(sf::Color::Magenta);
+                icon3.setPosition({200, 300});
+                icon3.setOrigin(icon3.getLocalBounds().width/2, icon3.getLocalBounds().height/2);
+
+                window.draw(item3);
+                window.draw(i3text);
+                window.draw(icon3);
+
+                //fourth section
+                sf::RectangleShape item4(sf::Vector2f(128.0f, 128.0f));
+                item4.setSize({300, 50});
+                item4.setFillColor(sf::Color::Magenta);
+                item4.setPosition({400, 400});
+                item4.setOrigin(item4.getLocalBounds().width/2, item4.getLocalBounds().height/2);
+                sf::Text i4text;
+                i4text.setFont(mFont);
+                i4text.setString("Spell 4");
+                i4text.setOrigin(i4text.getLocalBounds().width/2, i4text.getLocalBounds().height/2);
+                i4text.setPosition(item4.getPosition().x, item4.getPosition().y-10);
+
+                sf::CircleShape icon4(20);
+                icon4.setFillColor(sf::Color::Magenta);
+                icon4.setPosition({200, 400});
+                icon4.setOrigin(icon4.getLocalBounds().width/2, icon4.getLocalBounds().height/2);
+
+                window.draw(item4);
+                window.draw(i4text);
+                window.draw(icon4);
             }
             else
             {
