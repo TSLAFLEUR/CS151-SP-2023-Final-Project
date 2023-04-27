@@ -50,6 +50,7 @@ void characterWalking(spriteWalk &character)
             character.charSprite.move(-1.f, 0.f);
             // if (clock.getElapsedTime().asSeconds() > 1.0f)
             //{
+                character.charCoords[0]--;
             if (character.charSprite.getTextureRect() == (sf::IntRect(48, character.offset, 16, 16)))
             {
                 character.charSprite.setTextureRect(sf::IntRect(32, character.offset, 16, 16));
@@ -66,6 +67,7 @@ void characterWalking(spriteWalk &character)
             // left key is pressed: move our character
             // character.charSprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
             character.charSprite.move(0.f, -1.f);
+            character.charCoords[1]++;
             if (character.charSprite.getTextureRect() == (sf::IntRect(96, character.offset, 16, 16)))
             {
                 character.charSprite.setTextureRect(sf::IntRect(16, character.offset, 16, 16));
@@ -81,6 +83,7 @@ void characterWalking(spriteWalk &character)
             // left key is pressed: move our character
             // character.charSprite.setTextureRect(sf::IntRect(64, 0, 16, 16));
             character.charSprite.move(1.f, 0.f);
+            character.charCoords[0]++;
             if (character.charSprite.getTextureRect() == (sf::IntRect(64, character.offset, 16, 16)))
             {
                 character.charSprite.setTextureRect(sf::IntRect(80, character.offset, 16, 16));
@@ -97,6 +100,7 @@ void characterWalking(spriteWalk &character)
             // left key is pressed: move our character
             // character.charSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
             character.charSprite.move(0.f, 1.f);
+            character.charCoords[1]--;
             if (character.charSprite.getTextureRect() == (sf::IntRect(112, character.offset, 16, 16)))
             {
                 character.charSprite.setTextureRect(sf::IntRect(0, character.offset, 16, 16));
