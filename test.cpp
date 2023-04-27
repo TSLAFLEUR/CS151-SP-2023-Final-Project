@@ -1,8 +1,11 @@
 #include "entity.h"
+
 using std::cout;
 using std::endl;
 
 int main(){
+    sf::RenderWindow window(sf::VideoMode(1280,720),"Test");
+    Player party2;
     Player *party[4];
     Paladin myPaladin;
     WhiteMage myWhiteMage;
@@ -12,12 +15,20 @@ int main(){
     party[1]=&myWhiteMage;
     party[2]=&myBlackMage;
     party[3]=&myFighter;
-    Enemy combat[2];
-    cout<<combat[0].getHP()<<endl;
-    party[0]->attack(combat[0]);
-    cout<<combat[0].getHP()<<endl;
-    cout<<combat[1].getHP()<<endl;
-    cout<<party[0]->getphysAtk()<<endl;
-    static_cast<Paladin*>(party[0])->smite(combat[1]);
-    cout<<combat[1].getHP()<<endl;
+    sf::Font font;
+    if(!font.loadFromFile("Final-Fantasy.ttf")){
+    }
+    while(window.isOpen()){
+        sf::Event event;
+        while(window.pollEvent(event)){
+            if(event.type==sf::Event::Closed){
+                window.close();
+            }
+        }
+        window.clear();
+        //displayCombat(myPaladin,myWhiteMage,myBlackMage,myFighter,window,font);
+        //window.display();
+        combat(myPaladin,myWhiteMage,myBlackMage,myFighter,window,font,1);
+    }
+    return 0;
 }
