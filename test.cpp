@@ -1,9 +1,7 @@
 #include "entity.h"
 
-using std::cout;
-using std::endl;
-
 int main(){
+    srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(1280,720),"Test");
     Player party2;
     Player *party[4];
@@ -26,8 +24,6 @@ int main(){
             }
         }
         window.clear();
-        //displayCombat(myPaladin,myWhiteMage,myBlackMage,myFighter,window,font);
-        //window.display();
         combat(myPaladin,myWhiteMage,myBlackMage,myFighter,window,font,1);
     }
     return 0;

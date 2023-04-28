@@ -6,15 +6,36 @@
 #include <vector>
 #include <queue>
 #include <SFML/Graphics.hpp>
+#include <stdlib.h>
 
 using std::string;
 
 class Entity{
 public:
     Entity();
-    void attack(Entity &target)const;
+    virtual void attack(Entity &target);
     void setType(char t){type=t;}
-    int getType(){return type;}
+    const char getType(){return type;}
+    bool isDefeated(){return defeated;}
+    void checkDefeated(){if(HP<=0){defeated=true;}}
+
+    void setmaxHP(int hp){maxHP=hp;HP=hp;}
+    int getmaxHP()const{return maxHP;}
+    void setmaxMP(int mp){maxMP=mp;MP=mp;}
+    int getmaxMP()const{return maxMP;}
+    void setmaxSP(int sp){maxSP=sp;SP=sp;}
+    int getmaxSP()const{return maxSP;}
+    void setmaxphysAtk(int pa){maxphysAtk=pa;physAtk=pa;}
+    int getmaxphysAtk()const{return maxphysAtk;}
+    void setmaxphysDef(int pd){maxphysDef=pd;physDef=pd;}
+    int getmaxphysDef()const{return maxphysDef;}
+    void setmaxmgcAtk(int ma){maxmgcAtk=ma;mgcAtk=ma;}
+    int getmaxmgcAtk()const{return maxmgcAtk;}
+    void setmaxmgcDef(int md){maxmgcDef=md;mgcDef=md;}
+    int getmaxmgcDef()const{return maxmgcDef;}
+    void setmaxspeed(int s){maxspeed=s;speed=s;}
+    int getmaxspeed()const{return maxspeed;}
+
     void setHP(int hp){HP=hp;}
     int getHP()const{return HP;}
     void setMP(int mp){MP=mp;}
@@ -31,9 +52,22 @@ public:
     int getmgcDef()const{return mgcDef;}
     void setspeed(int s){speed=s;}
     int getspeed()const{return speed;}
+
+    
 private:
     string name;
     char type;//p=physical, m=magic
+    bool defeated;
+    
+    int maxHP;//health points
+    int maxMP;//magic points
+    int maxSP;//skill points
+    int maxphysAtk;//physical attack
+    int maxphysDef;//physical defense
+    int maxmgcAtk;//magic attack
+    int maxmgcDef;//magic defense
+    int maxspeed;
+    
     int HP;//health points
     int MP;//magic points
     int SP;//skill points
@@ -51,44 +85,39 @@ private:
 
 class Paladin :public Player{
 public:
-    Paladin():Player(){setType('p');}
+    Paladin();
     void smite(Entity &target);
 private:
 };
 
 class WhiteMage :public Player{
 public:
-    WhiteMage():Player(){
-        setType('w');
-        setMP(10);
-    }
+    WhiteMage();
     void cure(Entity &target)const;
 private:
 };
 
 class BlackMage :public Player{
 public:
-    BlackMage():Player(){
-        setType('b');
-        setMP(10);
-    }
+    BlackMage();
     void fire(Entity &target)const;
 private:
 };
 
 class Fighter :public Player{
 public:
-    Fighter():Player(){setType('f');}
+    Fighter();
     void rush(Entity &target)const;
 private:
 };
 
 class Enemy :public Entity{
 public:
+    Enemy();
 private:
 };
 
 void displayCombat(const Paladin &myPaladin,const WhiteMage &myWhiteMage,const BlackMage &myBlackMage, const Fighter &myFighter,sf::RenderWindow &window,sf::Font &font);
-void combat(const Paladin p,const WhiteMage w,const BlackMage b, const Fighter f,sf::RenderWindow &window,sf::Font &font, int encounter=0);
+void combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f,sf::RenderWindow &window,sf::Font &font, int encounter=0);
 void initiative(const Paladin p,const WhiteMage w,const BlackMage b, const Fighter f, int encounter,std::queue<int> &q);
 #endif

@@ -4,31 +4,34 @@
 Entity::Entity(){
     name = "null";
     type='p';//p=physical, m=magic
-    HP=10;
-    MP=0;
-    SP=10;
-    physAtk=10;
-    physDef=5;
-    mgcAtk=10;
-    mgcDef=5;
-    speed=10;
+    HP=rand()%10+rand()%10;
+    MP=rand()%10+rand()%10;
+    SP=rand()%10+rand()%10;
+    physAtk=rand()%10+rand()%10;
+    physDef=rand()%10+rand()%10;
+    mgcAtk=rand()%10+rand()%10;
+    mgcDef=rand()%10+rand()%10;
+    speed=rand()%10+rand()%10;
+    defeated=false;
 }
 
-void Entity::attack(Entity &target)const{
-    target.setHP(target.getHP()-(this->getphysAtk()-target.getphysDef()));
+void Entity::attack(Entity &target){
+    target.setHP(target.getHP()-this->getphysAtk());//(this->getphysAtk()-target.getphysDef()));
 }
 
 //Player
+Paladin::Paladin():Player(){
+    setType('p');
+    setmaxHP(rand()%10+rand()%10+rand()%10+rand()%10);
+    setmaxSP(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxMP(0);
+    setmaxphysAtk(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxphysDef(rand()%10+rand()%10+rand()%10+rand()%10);
+    setmaxmgcAtk(rand()%6+rand()%6+rand()%6+rand()%6);
+    setmaxmgcDef(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxspeed(rand()%6+rand()%6+rand()%6+rand()%6);
+}
 
-//Paladin
-// Paladin::Paladin():Player(){
-//     setHP(50);
-//     setSP(25);
-//     setphysAtk(25);
-//     setphysDef(20);
-//     setmgcAtk(25);
-//     setmgcDef(10);
-// }
 void Paladin::smite(Entity &target){
     if(Entity::getSP()>5){ 
         Entity::setSP(Entity::getSP()-5);  
@@ -36,23 +39,68 @@ void Paladin::smite(Entity &target){
     }
 }
 //White Mage
-
+WhiteMage::WhiteMage():Player(){
+    setType('w');
+    setmaxHP(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxSP(0);
+    setmaxMP(rand()%10+rand()%10+rand()%10+rand()%10);
+    setmaxphysAtk(rand()%6+rand()%6+rand()%6+rand()%6);
+    setmaxphysDef(rand()%6+rand()%6+rand()%6+rand()%6);
+    setmaxmgcAtk(rand()%10+rand()%10+rand()%10+rand()%10);
+    setmaxmgcDef(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxspeed(rand()%10+rand()%10+rand()%10+rand()%10);
+}
 //Black Mage
-
+BlackMage::BlackMage():Player(){
+    setType('b');
+    setmaxHP(rand()%6+rand()%6+rand()%6+rand()%6);
+    setmaxSP(0);
+    setmaxMP(rand()%10+rand()%10+rand()%10+rand()%10);
+    setmaxphysAtk(rand()%6+rand()%6+rand()%6+rand()%6);
+    setmaxphysDef(rand()%6+rand()%6+rand()%6+rand()%6);
+    setmaxmgcAtk(rand()%10+rand()%10+rand()%10+rand()%10);
+    setmaxmgcDef(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxspeed(rand()%8+rand()%8+rand()%8+rand()%8);
+}
 //Fighter
-
+Fighter::Fighter():Player(){
+    setType('f');
+    setmaxHP(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxSP(rand()%10+rand()%10+rand()%10+rand()%10);
+    setmaxMP(0);
+    setmaxphysAtk(rand()%10+rand()%10+rand()%10+rand()%10);
+    setmaxphysDef(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxmgcAtk(rand()%6+rand()%6+rand()%6+rand()%6);
+    setmaxmgcDef(rand()%6+rand()%6+rand()%6+rand()%6);
+    setmaxspeed(rand()%8+rand()%8+rand()%8+rand()%8);
+}
 //Enemy
+Enemy::Enemy():Entity(){
+    setType('e');
+}
 
 //Combat
-void initiative(const Paladin p,const WhiteMage w,const BlackMage b, const Fighter f, int encounter,std::queue<Entity> &q){
+void initiative(const Paladin p,const WhiteMage w,const BlackMage b, const Fighter f,const Enemy &e, int encounter,std::queue<Entity> &q){
     q.push(f);
     q.push(b);
     q.push(p);
     q.push(w);
-    if(encounter==1){
-        Enemy e;
-        q.push(e);
-    }
+}
+
+void fight(){
+
+}
+
+void skillMagic(){
+
+}
+
+void items(){
+
+}
+
+void run(){
+
 }
 
 void displayCombat(const Paladin &myPaladin,const WhiteMage &myWhiteMage,const BlackMage &myBlackMage, const Fighter &myFighter,sf::RenderWindow &window,sf::Font &font){
@@ -163,7 +211,7 @@ void displayCombat(const Paladin &myPaladin,const WhiteMage &myWhiteMage,const B
     window.display();
 }
 
-bool combatChoice(sf::Font &font,Entity p,sf::RenderWindow &window, Enemy &e){
+bool combatChoice(sf::Font &font,Entity p,sf::RenderWindow &window, const Enemy &e){
     sf::RectangleShape clearActive(sf::Vector2f(30,4*window.getSize().y/5));
     clearActive.setFillColor(sf::Color::Black);
     clearActive.setPosition(4*window.getSize().x/5-50,window.getSize().y/5);
@@ -212,16 +260,16 @@ bool combatChoice(sf::Font &font,Entity p,sf::RenderWindow &window, Enemy &e){
                 }
                 if(event.key.code==sf::Keyboard::Enter){
                     if(choice==1){//fight
-                        std::cout<<"fight"<<std::endl;
+                        fight();
                         i=0;
                     }else if(choice==2){//skills
-                        std::cout<<"skills"<<std::endl;
+                        skillMagic();
                         i=0;
                     }else if(choice==3){//items
-                        std::cout<<"items"<<std::endl;
+                        items();
                         i=0;
                     }else if(choice==4){//run
-                        std::cout<<"run"<<std::endl;
+                        run();
                         i=0;
                     }
                 }
@@ -235,19 +283,25 @@ bool combatChoice(sf::Font &font,Entity p,sf::RenderWindow &window, Enemy &e){
     return false;
 }
 
-void combatEnemyAction(){
-
+void combatEnemyAction(Entity &p,Enemy &e){
+    e.attack(p);
 }
 
-void combat(const Paladin p,const WhiteMage w,const BlackMage b, const Fighter f, sf::RenderWindow &window, sf::Font &font ,int encounter){
+bool combatActive(const Paladin &p,const WhiteMage &w,const BlackMage &b, const Fighter &f){
+    return true;
+}
+
+void combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &window, sf::Font &font, int encounter){
     std::queue<Entity> init;
-    initiative(p,w,b,f,encounter,init);//determine initiative
-    bool combat=true;
-    bool waitForInstruct=true;
-    Enemy enemy[5];
+    Enemy enemy[1];
+    //initiative(p,w,b,f,enemy[0],encounter,init);//determine initiative
+    init.push(f);
+    init.push(b);
+    init.push(p);
+    init.push(w);
     init.push(enemy[0]);
     displayCombat(p,w,b,f,window,font);
-    while(combat)
+    while(combatActive(p,w,b,f))
     {
         if(init.front().getType()=='p'){//if paladin's turn
             while(combatChoice(font,p,window,*enemy)){}
@@ -258,7 +312,23 @@ void combat(const Paladin p,const WhiteMage w,const BlackMage b, const Fighter f
         } else if(init.front().getType()=='f'){//if fighter's turn
             while(combatChoice(font,f,window,*enemy)){}
         } else if(init.front().getType()=='e'){
-            combatEnemyAction();
+            std::cout<<"Enemy turn"<<std::endl;
+            switch(rand()%4){
+                case(0):
+                    combatEnemyAction(p,enemy[0]);
+                    break;
+                case(1):
+                    combatEnemyAction(w,enemy[0]);
+                    break;
+                case(2):
+                    combatEnemyAction(b,enemy[0]);
+                    break;
+                case(3):
+                    combatEnemyAction(f,enemy[0]);
+                    break;
+                default:
+                    break;
+            }
         }
         init.push(init.front());//put front of queue to back
         init.pop();//remove current turn from front
