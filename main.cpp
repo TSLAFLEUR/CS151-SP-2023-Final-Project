@@ -1,18 +1,13 @@
 #include "entity.h"
+#include "combat.h"
 
 int main(){
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(1280,720),"Test");
-    Player party2;
-    Player *party[4];
     Paladin myPaladin;
     WhiteMage myWhiteMage;
     BlackMage myBlackMage;
     Fighter myFighter;
-    party[0]=&myPaladin;
-    party[1]=&myWhiteMage;
-    party[2]=&myBlackMage;
-    party[3]=&myFighter;
     sf::Font font;
     if(!font.loadFromFile("Final-Fantasy.ttf")){
     }
