@@ -18,6 +18,6 @@ public:
     sf::Sprite charSprite;
     std::string characterChoice;
     int offset;
-    int charCoords[2] = {0,0};
+    int charCoords[2] = {64,64};
 };
 void characterWalking(spriteWalk &character);

@@ -2,9 +2,9 @@
 #include <iostream>
 #include <string>
 #include <SFML/Graphics.hpp>
-const sf::Vector2i coordinatesForSprites[10] = {{352,0},{384,32},{384,64},{352,32},{320,192},{448,96},{448,128},{448,160},{416,128},{416,160}};
-const std::string tileNames[10] = {"middleStone","stone top left","stone bottom left","stone top right", "Wall", "carpet middle",
-                                   "carpet top left","carpet bottom left","carpet top right","carpet bottom right" };
+const sf::Vector2i coordinatesForSprites[10] = {{0,0},{0,16},{0,32},{0,48},{0,64},{0,80},{0,96},{0,112},{0,128},{0,144}};
+const std::string tileNames[10] = {"MiddleWall","left_wall","right_wall","left_tile", "right_tile", "grass",
+                                   "chair","dragon","black","carpet bottom right" };
 class tiles
 {
 public:

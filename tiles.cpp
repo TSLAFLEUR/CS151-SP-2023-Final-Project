@@ -25,7 +25,7 @@ bool tiles::setUpSprite(std::string textureName,std::string tileName)
     {
         return false;
     }
-    tileTextures.setSmooth(true);
+    tileTextures.setSmooth(false);
     sprite.setTexture(tileTextures);
     for(int i = 0; i<10;i++)
     {
