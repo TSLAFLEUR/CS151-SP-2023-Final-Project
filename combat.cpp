@@ -1,126 +1,87 @@
-#include "entity.h"
+#include "combat.h"
 
-//Entity
-Entity::Entity(){
-    name = "null";
-    type='p';//p=physical, m=magic
-    HP=rand()%10+rand()%10;
-    MP=rand()%10+rand()%10;
-    SP=rand()%10+rand()%10;
-    physAtk=rand()%10+rand()%10;
-    physDef=rand()%10+rand()%10;
-    mgcAtk=rand()%10+rand()%10;
-    mgcDef=rand()%10+rand()%10;
-    speed=rand()%10+rand()%10;
-    defeated=false;
-}
-
-void Entity::attack(Entity &target){
-<<<<<<< HEAD
-    int damage=(this->getphysAtk()-(target.getphysDef()/2));
-    if(damage<=0){
-        damage=1;
+bool fight(sf::Font &font,Entity p,sf::RenderWindow &window,Enemy &e){//done
+    sf::Event event;
+    int choice=1;
+    int i=1;
+    int height=0;
+    sf::RectangleShape clearSelection(sf::Vector2f(30,160));
+    clearSelection.setFillColor(sf::Color::Black);
+    clearSelection.setPosition(20,height+3*window.getSize().y/4);
+    sf::Text selection;
+    selection.setFont(font);
+    selection.setString('>');
+    selection.setPosition(20,3*window.getSize().y/4);
+    window.draw(selection);
+    window.display();
+    while(i!=0){
+        i=1;
+        while(window.pollEvent(event)){
+            if(event.type==sf::Event::KeyPressed){
+                if(event.key.code==sf::Keyboard::Enter){
+                    if(choice==1){//fight
+                        p.attack(e);
+                        return true;
+                    }
+                }
+                if(event.key.code==sf::Keyboard::Escape){
+                    window.draw(clearSelection);
+                    window.display();
+                    return false;
+                }
+            selection.setPosition(window.getSize().x/2-50,height+3*window.getSize().y/4);
+            window.draw(clearSelection);
+            window.draw(selection);
+            window.display();
+            }     
+        }
     }
-    target.setHP(target.getHP()-damage);
-    std::cout<<target.HP<<std::endl;
-    target.checkDefeated();
-=======
-    target.setHP(target.getHP()-this->getphysAtk());//(this->getphysAtk()-target.getphysDef()));
->>>>>>> a279eeaf06e353db5e82a12f91f8fc04b599fb9d
+    return true;
 }
 
-//Player
-Paladin::Paladin():Player(){
-    setType('p');
-    setmaxHP(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxSP(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxMP(0);
-    setmaxphysAtk(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxphysDef(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxmgcAtk(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxmgcDef(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxspeed(rand()%6+rand()%6+rand()%6+rand()%6);
-}
-
-void Paladin::smite(Entity &target){
-    if(Entity::getSP()>5){ 
-        Entity::setSP(Entity::getSP()-5);  
-        target.setHP(target.getHP()-(((Entity::getmgcAtk())*2)-target.getmgcDef()));
+bool skillMagic(sf::Font &font,Entity p,sf::RenderWindow &window,Entity &e){
+    sf::Event event;
+    int choice=1;
+    int i=1;
+    int height=0;
+    sf::RectangleShape clearSelection(sf::Vector2f(30,160));
+    clearSelection.setFillColor(sf::Color::Black);
+    clearSelection.setPosition(20,height+3*window.getSize().y/4);
+    sf::Text selection;
+    selection.setFont(font);
+    selection.setString('>');
+    selection.setPosition(20,3*window.getSize().y/4);
+    window.draw(selection);
+    window.display();
+    while(i!=0){
+        i=1;
+        while(window.pollEvent(event)){
+            if(event.type==sf::Event::KeyPressed){
+                if(event.key.code==sf::Keyboard::Enter){
+                    if(choice==1){//fight
+                        p.attack(e);
+                        return true;
+                    }
+                }
+                if(event.key.code==sf::Keyboard::Escape){
+                    return false;
+                }
+            selection.setPosition(window.getSize().x/2-50,height+3*window.getSize().y/4);
+            window.draw(clearSelection);
+            window.draw(selection);
+            window.display();
+            }     
+        }
     }
-}
-//White Mage
-WhiteMage::WhiteMage():Player(){
-    setType('w');
-    setmaxHP(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxSP(0);
-    setmaxMP(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxphysAtk(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxphysDef(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxmgcAtk(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxmgcDef(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxspeed(rand()%10+rand()%10+rand()%10+rand()%10);
-}
-//Black Mage
-BlackMage::BlackMage():Player(){
-    setType('b');
-    setmaxHP(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxSP(0);
-    setmaxMP(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxphysAtk(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxphysDef(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxmgcAtk(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxmgcDef(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxspeed(rand()%8+rand()%8+rand()%8+rand()%8);
-}
-//Fighter
-Fighter::Fighter():Player(){
-    setType('f');
-    setmaxHP(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxSP(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxMP(0);
-    setmaxphysAtk(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxphysDef(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxmgcAtk(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxmgcDef(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxspeed(rand()%8+rand()%8+rand()%8+rand()%8);
-}
-//Enemy
-Enemy::Enemy():Entity(){
-    setType('e');
-<<<<<<< HEAD
-    setmaxHP(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxSP(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxMP(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxphysAtk(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxphysDef(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxmgcAtk(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxmgcDef(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxspeed(rand()%12+rand()%12+rand()%12+rand()%12);
-=======
+    return true;
 }
 
-//Combat
-void initiative(const Paladin p,const WhiteMage w,const BlackMage b, const Fighter f,const Enemy &e, int encounter,std::queue<Entity> &q){
-    q.push(f);
-    q.push(b);
-    q.push(p);
-    q.push(w);
+bool items(){
+    return true;
 }
 
-void fight(){
-
-}
-
-void skillMagic(){
-
-}
-
-void items(){
-
-}
-
-void run(){
-
+bool run(){
+    return true;
 }
 
 void displayCombat(const Paladin &myPaladin,const WhiteMage &myWhiteMage,const BlackMage &myBlackMage, const Fighter &myFighter,sf::RenderWindow &window,sf::Font &font){
@@ -231,7 +192,15 @@ void displayCombat(const Paladin &myPaladin,const WhiteMage &myWhiteMage,const B
     window.display();
 }
 
-bool combatChoice(sf::Font &font,Entity p,sf::RenderWindow &window, const Enemy &e){
+void displayEnemy(Enemy enemy,sf::RenderWindow &window,sf::Font &font){
+    sf::Text en;
+    en.setFont(font);
+    en.setString("Enemy1"); 
+    en.setPosition(50,3*window.getSize().y/4);
+    window.draw(en);
+}
+
+bool combatChoice(sf::Font &font,Entity p,sf::RenderWindow &window, Enemy &e){
     sf::RectangleShape clearActive(sf::Vector2f(30,4*window.getSize().y/5));
     clearActive.setFillColor(sf::Color::Black);
     clearActive.setPosition(4*window.getSize().x/5-50,window.getSize().y/5);
@@ -251,7 +220,7 @@ bool combatChoice(sf::Font &font,Entity p,sf::RenderWindow &window, const Enemy 
     window.draw(active);
     sf::Event event;
     int choice=1;
-    int i=1;
+    bool madeCombatDecision=false;
     int height=0;
     sf::RectangleShape clearSelection(sf::Vector2f(30,160));
     clearSelection.setFillColor(sf::Color::Black);
@@ -262,8 +231,8 @@ bool combatChoice(sf::Font &font,Entity p,sf::RenderWindow &window, const Enemy 
     selection.setPosition(window.getSize().x/2-50,height+3*window.getSize().y/4);
     window.draw(selection);
     window.display();
-    while(i!=0){
-        i=1;
+    while(!madeCombatDecision){
+        madeCombatDecision=false;
         while(window.pollEvent(event)){
             if(event.type==sf::Event::KeyPressed){
                 if(event.key.code==sf::Keyboard::Down){
@@ -280,17 +249,13 @@ bool combatChoice(sf::Font &font,Entity p,sf::RenderWindow &window, const Enemy 
                 }
                 if(event.key.code==sf::Keyboard::Enter){
                     if(choice==1){//fight
-                        fight();
-                        i=0;
+                        madeCombatDecision=fight(font,p,window,e);
                     }else if(choice==2){//skills
-                        skillMagic();
-                        i=0;
+                        madeCombatDecision=skillMagic(font,p,window,e);
                     }else if(choice==3){//items
-                        items();
-                        i=0;
+                        madeCombatDecision=items();
                     }else if(choice==4){//run
-                        run();
-                        i=0;
+                        madeCombatDecision=run();
                     }
                 }
                 selection.setPosition(window.getSize().x/2-50,height+3*window.getSize().y/4);
@@ -307,53 +272,107 @@ void combatEnemyAction(Entity &p,Enemy &e){
     e.attack(p);
 }
 
-bool combatActive(const Paladin &p,const WhiteMage &w,const BlackMage &b, const Fighter &f){
+bool combatPartyActive(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f){
+    if(p.isDefeated()&&w.isDefeated()&&b.isDefeated()&&f.isDefeated()){
+        std::cout<<"party defeated."<<std::endl;
+        return false;
+    }
     return true;
 }
 
-void combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &window, sf::Font &font, int encounter){
+bool combatEnemyActive(Enemy &e){
+    if(e.isDefeated()){
+        std::cout<<"enemy defeated."<<std::endl;
+        return false;
+    }
+    return true;
+}
+
+int combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &window, sf::Font &font, int encounter){
     std::queue<Entity> init;
     Enemy enemy[1];
-    //initiative(p,w,b,f,enemy[0],encounter,init);//determine initiative
+    bool validTarget;
     init.push(f);
     init.push(b);
     init.push(p);
     init.push(w);
     init.push(enemy[0]);
     displayCombat(p,w,b,f,window,font);
-    while(combatActive(p,w,b,f))
+    displayEnemy(enemy[0],window,font);
+    while(combatPartyActive(p,w,b,f)&&combatEnemyActive(enemy[0]))
     {
         if(init.front().getType()=='p'){//if paladin's turn
-            while(combatChoice(font,p,window,*enemy)){}
+            if(!p.isDefeated()){
+                while(combatChoice(font,p,window,*enemy)){}
+                init.push(init.front());
+            }
+            init.pop();
         } else if(init.front().getType()=='w'){//if white mage's turn
-            while(combatChoice(font,w,window,*enemy)){}
+            if(!w.isDefeated()){
+                while(combatChoice(font,w,window,*enemy)){}
+                init.push(init.front());
+            }
+            init.pop();
         } else if(init.front().getType()=='b'){//if black mage's turn
-            while(combatChoice(font,b,window,*enemy)){}
+            if(!b.isDefeated()){
+                while(combatChoice(font,b,window,*enemy)){}
+                init.push(init.front());
+            }
+            init.pop();
         } else if(init.front().getType()=='f'){//if fighter's turn
-            while(combatChoice(font,f,window,*enemy)){}
+            if(!f.isDefeated()){
+                while(combatChoice(font,f,window,*enemy)){}
+                init.push(init.front());
+            }
+            init.pop();
         } else if(init.front().getType()=='e'){
-            std::cout<<"Enemy turn"<<std::endl;
-            switch(rand()%4){
-                case(0):
-                    combatEnemyAction(p,enemy[0]);
+            validTarget=false;
+            while(!validTarget){
+                switch(rand()%4){
+                    case(0):
+                        if(!p.isDefeated()){
+                            combatEnemyAction(p,enemy[0]);
+                            validTarget=true;
+                        }
+                        break;
+                    case(1):
+                        if(!w.isDefeated()){
+                            combatEnemyAction(w,enemy[0]);
+                            validTarget=true;
+                        }
+                        break;
+                    case(2):
+                        if(!b.isDefeated()){
+                            combatEnemyAction(b,enemy[0]);
+                            validTarget=true;
+                        }
+                        break;
+                    case(3):
+                        if(!f.isDefeated()){
+                            combatEnemyAction(f,enemy[0]);
+                            validTarget=true;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                if(!combatPartyActive(p,w,b,f)){
                     break;
-                case(1):
-                    combatEnemyAction(w,enemy[0]);
-                    break;
-                case(2):
-                    combatEnemyAction(b,enemy[0]);
-                    break;
-                case(3):
-                    combatEnemyAction(f,enemy[0]);
-                    break;
-                default:
-                    break;
+                }
+            init.push(init.front());//put front of queue to back
+            init.pop();//remove current turn from front
             }
         }
-        init.push(init.front());//put front of queue to back
-        init.pop();//remove current turn from front
         displayCombat(p,w,b,f,window,font);
+        displayEnemy(enemy[0],window,font);
     }
->>>>>>> a279eeaf06e353db5e82a12f91f8fc04b599fb9d
+    if(!combatEnemyActive(enemy[0])){
+        std::cout<<"Victory"<<std::endl;
+        return 1;
+    }
+    if(!combatPartyActive(p,w,b,f)){
+        std::cout<<"Defeat"<<std::endl;
+        return 0;
+    }
+    return 0;
 }
-
