@@ -37,10 +37,10 @@ public:
 
     //This function update the button state and/or look
     void updateMenu(sf::Event& e, sf::RenderWindow& window);
-    void updateParty(sf::Event& e, sf::RenderWindow& window);
-    void updateItems(sf::Event& e, sf::RenderWindow& window);
-    void updateMagic(sf::Event& e, sf::RenderWindow& window);
-    void updateQuit(sf::Event& e, sf::RenderWindow& window);
+    void updateParty(sf::Event& e, sf::RenderWindow& window, int choice);
+    void updateItems(sf::Event& e, sf::RenderWindow& window, int choice);
+    void updateMagic(sf::Event& e, sf::RenderWindow& window, int choice);
+    void updateQuit(sf::Event& e, sf::RenderWindow& window, int choice);
 
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
 
