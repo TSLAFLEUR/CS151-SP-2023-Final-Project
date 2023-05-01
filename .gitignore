@@ -25,9 +25,10 @@
 *.la
 *.a
 *.lib
-
+test.cpp
 # Executables
 *.exe
 *.out
 *.app
-./sfml-app
+sfml-app
+.vscode/settings.json
