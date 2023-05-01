@@ -39,7 +39,7 @@ spriteWalk::spriteWalk(std::string name)
         offset = charOffset[3];
     }
     charSprite.setTextureRect(sf::IntRect(0, offset, 16, 16));
-    charSprite.move(64.f, 64.f);
+    charSprite.move(416.f, 416.f);
 }
 
 void characterWalking(spriteWalk &character)
