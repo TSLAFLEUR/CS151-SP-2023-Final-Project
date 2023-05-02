@@ -57,7 +57,6 @@ void displayMenu(sf::RenderWindow &window)
    quit.setColorTextNormal(sf::Color::Red);
 //test
    int choice;
-
    while (window.isOpen())
    {
        sf::Event event;
@@ -96,7 +95,6 @@ void displayMenu(sf::RenderWindow &window)
             window.draw(quit);
             
        }
-       
        
        //window.draw(rect);
        

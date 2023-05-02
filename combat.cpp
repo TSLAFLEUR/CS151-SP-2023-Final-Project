@@ -85,6 +85,9 @@ bool run(){
 }
 
 void displayCombat(const Paladin &myPaladin,const WhiteMage &myWhiteMage,const BlackMage &myBlackMage, const Fighter &myFighter,sf::RenderWindow &window,sf::Font &font){
+    sf::RectangleShape combat(sf::Vector2f(window.getSize().x,window.getSize().y));
+    combat.setFillColor(sf::Color::Black);
+    window.draw(combat);
     sf::RectangleShape border(sf::Vector2f(window.getSize().x/5,window.getSize().y/5-10));
     border.setFillColor(sf::Color::Black);
     border.setOutlineColor(sf::Color::White);
@@ -234,6 +237,9 @@ bool combatChoice(sf::Font &font,Entity p,sf::RenderWindow &window, Enemy &e){
     while(!madeCombatDecision){
         madeCombatDecision=false;
         while(window.pollEvent(event)){
+            // Close window: exit
+            if (event.type == sf::Event::Closed)
+                window.close();
             if(event.type==sf::Event::KeyPressed){
                 if(event.key.code==sf::Keyboard::Down){
                     if(height<120){
@@ -375,4 +381,26 @@ int combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &wi
         return 0;
     }
     return 0;
+}
+
+void gameOver(sf::RenderWindow &window, sf::Font &font){
+    sf::RectangleShape combat(sf::Vector2f(window.getSize().x,window.getSize().y));
+    combat.setFillColor(sf::Color::Black);
+    window.draw(combat);
+    while(1){
+        sf::Text gameOver;
+        gameOver.setFont(font);
+        gameOver.setString("GAME OVER");
+        gameOver.setOrigin(gameOver.getGlobalBounds().width/2,gameOver.getGlobalBounds().height/2);
+        gameOver.setPosition(sf::Vector2f(window.getSize().x/2,window.getSize().y/2));
+        window.draw(gameOver);
+        window.display();
+        sf::Event event;
+        while(window.pollEvent(event)){
+            // Close window: exit
+            if (event.type == sf::Event::Closed)
+                window.close();
+                break;
+        }
+    }
 }
