@@ -69,7 +69,7 @@ int main()
         window.display();
         window.clear();
         if(!combatPartyActive(myPaladin,myWhiteMage,myBlackMage,myFighter)){
-            gameOver(window,fo);
+            gameOver(window,font);
         }
     }
     return EXIT_SUCCESS;
