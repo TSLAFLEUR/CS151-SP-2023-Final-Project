@@ -1,5 +1,10 @@
 #include "entity.h"
 #include "combat.h"
+#include "button.h"
+#include "gameWorld.h"
+#include "menu.h"
+#include "tiles.h"
+#include "walking.h"
 
 int main(){
     srand(time(NULL));
@@ -17,6 +22,7 @@ int main(){
             if(event.type==sf::Event::Closed){
                 window.close();
             }
+            displayMenu(window);
         }
         window.clear();
         combat(myPaladin,myWhiteMage,myBlackMage,myFighter,window,font,1);
