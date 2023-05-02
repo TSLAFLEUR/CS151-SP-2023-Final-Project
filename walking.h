@@ -3,6 +3,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "entity.h"
+#include "combat.h"
+#include "menu.h"
 
 const std::string spriteSelection[4] = {"Buff", "Warrior", "Magician", "Mage"};
 const int charOffset[4] = {0,16,32,48};
@@ -20,4 +23,4 @@ public:
     int offset;
     int charCoords[2] = {64,64};
 };
-void characterWalking(spriteWalk &character);
+void characterWalking(spriteWalk &character,Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &window, sf::Font &font, int encounter);
