@@ -14,5 +14,6 @@ void combatEnemyAction(Entity &p,Enemy &e);
 bool combatPartyActive(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f);
 bool combatEnemyActive(Enemy &e);
 int combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &window, sf::Font &font, int encounter);
+void gameOver(sf::RenderWindow &window, sf::Font &font);
 
 #endif

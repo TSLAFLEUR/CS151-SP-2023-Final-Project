@@ -17,11 +17,7 @@ public:
     void setType(char t){type=t;}
     const char getType(){return type;}
     bool isDefeated(){return defeated;}
-<<<<<<< HEAD
     void checkDefeated(){if(HP<=0){defeated=true;setHP(0);}}
-=======
-    void checkDefeated(){if(HP<=0){defeated=true;}}
->>>>>>> a279eeaf06e353db5e82a12f91f8fc04b599fb9d
 
     void setmaxHP(int hp){maxHP=hp;HP=hp;}
     int getmaxHP()const{return maxHP;}
@@ -61,11 +57,7 @@ public:
 private:
     string name;
     char type;//p=physical, m=magic
-<<<<<<< HEAD
     bool defeated=false;
-=======
-    bool defeated;
->>>>>>> a279eeaf06e353db5e82a12f91f8fc04b599fb9d
     
     int maxHP;//health points
     int maxMP;//magic points
@@ -125,10 +117,4 @@ public:
 private:
 };
 
-<<<<<<< HEAD
-=======
-void displayCombat(const Paladin &myPaladin,const WhiteMage &myWhiteMage,const BlackMage &myBlackMage, const Fighter &myFighter,sf::RenderWindow &window,sf::Font &font);
-void combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f,sf::RenderWindow &window,sf::Font &font, int encounter=0);
-void initiative(const Paladin p,const WhiteMage w,const BlackMage b, const Fighter f, int encounter,std::queue<int> &q);
->>>>>>> a279eeaf06e353db5e82a12f91f8fc04b599fb9d
 #endif
