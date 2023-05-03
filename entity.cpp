@@ -15,81 +15,145 @@ Entity::Entity(){
     defeated=false;
 }
 
+/**
+ * @brief This function attacks the chosen target using physical attack against physical defense
+ * 
+ * @param target 
+ */
 void Entity::attack(Entity &target){
     int damage=(this->getphysAtk()-(target.getphysDef()/2));
     if(damage<=0){
         damage=1;
     }
     target.setHP(target.getHP()-damage);
-    std::cout<<target.HP<<std::endl;
     target.checkDefeated();
 }
 
 //Player
 Paladin::Paladin():Player(){
     setType('p');
-    setmaxHP(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxSP(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxHP(10+rand()%10+rand()%10+rand()%10);
+    setmaxSP(8+rand()%8+rand()%8+rand()%8);
     setmaxMP(0);
-    setmaxphysAtk(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxphysDef(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxmgcAtk(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxmgcDef(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxspeed(rand()%6+rand()%6+rand()%6+rand()%6);
+    setmaxphysAtk(8+rand()%8+rand()%8+rand()%8);
+    setmaxphysDef(10+rand()%10+rand()%10+rand()%10);
+    setmaxmgcAtk(6+rand()%6+rand()%6+rand()%6);
+    setmaxmgcDef(8+rand()%8+rand()%8+rand()%8);
+    setmaxspeed(6+rand()%6+rand()%6+rand()%6);
 }
 
-void Paladin::smite(Entity &target){
-    if(Entity::getSP()>5){ 
-        Entity::setSP(Entity::getSP()-5);  
-        target.setHP(target.getHP()-(((Entity::getmgcAtk())*2)-target.getmgcDef()));
+bool Paladin::smite(Entity &target){
+    int damage=((getmgcAtk()+getphysAtk())-(target.getmgcDef()/2));
+    if(damage<=0){
+        damage=1;
     }
+    if(getSP()>=5){ 
+        target.setHP(target.getHP()-damage);
+        if(target.getHP()<0){
+            target.checkDefeated();
+            target.setHP(0);
+        }
+        setSP(getSP()-5);  
+        return true;
+    }
+    return false;
 }
 //White Mage
 WhiteMage::WhiteMage():Player(){
     setType('w');
-    setmaxHP(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxHP(8+rand()%8+rand()%8+rand()%8);
     setmaxSP(0);
-    setmaxMP(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxphysAtk(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxphysDef(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxmgcAtk(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxmgcDef(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxspeed(rand()%10+rand()%10+rand()%10+rand()%10);
+    setmaxMP(10+rand()%10+rand()%10+rand()%10);
+    setmaxphysAtk(6+rand()%6+rand()%6+rand()%6);
+    setmaxphysDef(6+rand()%6+rand()%6+rand()%6);
+    setmaxmgcAtk(10+rand()%10+rand()%10+rand()%10);
+    setmaxmgcDef(8+rand()%8+rand()%8+rand()%8);
+    setmaxspeed(10+rand()%10+rand()%10+rand()%10);
 }
+
+bool WhiteMage::cure(Entity &target){
+    if(getMP()>=5){
+        target.setHP(target.getHP()+getmgcAtk());
+        if(target.getmaxHP()<target.getHP()){
+            target.checkDefeated();
+            target.setHP(target.getmaxHP());
+        }
+        setMP(getMP()-5);
+        return true;
+    }
+    return false;
+}
+
 //Black Mage
 BlackMage::BlackMage():Player(){
     setType('b');
-    setmaxHP(rand()%6+rand()%6+rand()%6+rand()%6);
+    setmaxHP(6+rand()%6+rand()%6+rand()%6);
     setmaxSP(0);
-    setmaxMP(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxphysAtk(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxphysDef(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxmgcAtk(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxmgcDef(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxspeed(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxMP(10+rand()%10+rand()%10+rand()%10);
+    setmaxphysAtk(6+rand()%6+rand()%6+rand()%6);
+    setmaxphysDef(6+rand()%6+rand()%6+rand()%6);
+    setmaxmgcAtk(10+rand()%10+rand()%10+rand()%10);
+    setmaxmgcDef(8+rand()%8+rand()%8+rand()%8);
+    setmaxspeed(8+rand()%8+rand()%8+rand()%8);
 }
+
+bool BlackMage::fire(Entity &target){
+    int damage=(this->getmgcAtk()*2-(target.getmgcDef()/2));
+    if(damage<=0){
+        damage=1;
+    }
+    if(getMP()>=5){
+        target.setHP(target.getHP()-damage);
+        if(target.getHP()<0){
+            target.checkDefeated();
+            target.setHP(0);
+        }
+        setMP(getMP()-5);
+        return true;
+    }
+    return false;
+}
+
 //Fighter
 Fighter::Fighter():Player(){
     setType('f');
-    setmaxHP(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxSP(rand()%10+rand()%10+rand()%10+rand()%10);
+    setmaxHP(8+rand()%8+rand()%8+rand()%8);
+    setmaxSP(10+rand()%10+rand()%10+rand()%10);
     setmaxMP(0);
-    setmaxphysAtk(rand()%10+rand()%10+rand()%10+rand()%10);
-    setmaxphysDef(rand()%8+rand()%8+rand()%8+rand()%8);
-    setmaxmgcAtk(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxmgcDef(rand()%6+rand()%6+rand()%6+rand()%6);
-    setmaxspeed(rand()%8+rand()%8+rand()%8+rand()%8);
+    setmaxphysAtk(10+rand()%10+rand()%10+rand()%10);
+    setmaxphysDef(8+rand()%8+rand()%8+rand()%8);
+    setmaxmgcAtk(6+rand()%6+rand()%6+rand()%6);
+    setmaxmgcDef(6+rand()%6+rand()%6+rand()%6);
+    setmaxspeed(8+rand()%8+rand()%8+rand()%8);
 }
+
+bool Fighter::slash(Entity &target){
+    int damage=(this->getphysAtk()*2-(target.getphysDef()/2));
+    if(damage<=0){
+        damage=1;
+    }
+    if(getSP()>=5){
+        target.setHP(target.getHP()-damage);
+        if(target.getHP()<0){
+            target.checkDefeated();
+            target.setHP(0);
+        }
+        setSP(getSP()-5);
+        return true;
+    }
+    return false;
+}
+
 //Enemy
 Enemy::Enemy():Entity(){
     setType('e');
-    setmaxHP(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxSP(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxMP(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxphysAtk(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxphysDef(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxmgcAtk(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxmgcDef(rand()%12+rand()%12+rand()%12+rand()%12);
-    setmaxspeed(rand()%12+rand()%12+rand()%12+rand()%12);
+    setmaxHP(12+rand()%12+rand()%12+rand()%12);
+    setmaxSP(12+rand()%12+rand()%12+rand()%12);
+    setmaxMP(12+rand()%12+rand()%12+rand()%12);
+    setmaxphysAtk(12+rand()%12+rand()%12+rand()%12);
+    setmaxphysDef(12+rand()%12+rand()%12+rand()%12);
+    setmaxmgcAtk(12+rand()%12+rand()%12+rand()%12);
+    setmaxmgcDef(12+rand()%12+rand()%12+rand()%12);
+    setmaxspeed(12+rand()%12+rand()%12+rand()%12);
 }
 

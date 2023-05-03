@@ -39,7 +39,7 @@ spriteWalk::spriteWalk(std::string name)
         offset = charOffset[3];
     }
     charSprite.setTextureRect(sf::IntRect(0, offset, 16, 16));
-    charSprite.move(416.f, 416.f);
+    charSprite.move(416.f, 64.f);
 }
 
 void characterWalking(spriteWalk &character,Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &window, sf::Font &font, int encounter)
@@ -86,7 +86,7 @@ void characterWalking(spriteWalk &character,Paladin &p,WhiteMage &w,BlackMage &b
             }
         }
 
-       else  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)&& character.charCoords[0] <= 912)
+       else  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)&& character.charCoords[0] <= 768)
         {
             // left key is pressed: move our character
             // character.charSprite.setTextureRect(sf::IntRect(64, 0, 16, 16));
@@ -106,7 +106,7 @@ void characterWalking(spriteWalk &character,Paladin &p,WhiteMage &w,BlackMage &b
                 //character.charSprite.setOrigin(16.f / 2.f, 0.f / 2.f);
             }
         }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)&&character.charCoords[1] <= 896)
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)&&character.charCoords[1] <= 768)
         {
             // left key is pressed: move our character
             // character.charSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));

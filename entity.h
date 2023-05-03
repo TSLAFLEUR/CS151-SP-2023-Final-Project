@@ -86,28 +86,28 @@ private:
 class Paladin :public Player{
 public:
     Paladin();
-    void smite(Entity &target);
+    bool smite(Entity &target);
 private:
 };
 
 class WhiteMage :public Player{
 public:
     WhiteMage();
-    void cure(Entity &target)const;
+    bool cure(Entity &target);
 private:
 };
 
 class BlackMage :public Player{
 public:
     BlackMage();
-    void fire(Entity &target)const;
+    bool fire(Entity &target);
 private:
 };
 
 class Fighter :public Player{
 public:
     Fighter();
-    void rush(Entity &target)const;
+    bool slash(Entity &target);
 private:
 };
 
