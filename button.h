@@ -41,6 +41,24 @@ public:
     void updateItems(sf::Event& e, sf::RenderWindow& window, int choice);
     void updateMagic(sf::Event& e, sf::RenderWindow& window, int choice);
     void updateQuit(sf::Event& e, sf::RenderWindow& window, int choice);
+    void updateStart(sf::Event& e, sf::RenderWindow& window, int mainChoice);
+    void updateExit(sf::Event& e, sf::RenderWindow& window, int mainChoice);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
 

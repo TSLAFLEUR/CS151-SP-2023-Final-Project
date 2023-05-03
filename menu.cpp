@@ -4,7 +4,7 @@ void displayMenu(sf::RenderWindow &window)
 {
     sf::RectangleShape rect(sf::Vector2f(128.0f, 128.0f));
     rect.setFillColor(sf::Color::Black);
-    rect.setScale(800.0f, 500.0f);
+    rect.setScale(1600.0f, 900.0f);
    
 
 //menu banner
@@ -59,59 +59,115 @@ void displayMenu(sf::RenderWindow &window)
    int choice;
    while (window.isOpen())
    {
-       sf::Event event;
-       while (window.pollEvent(event))
-       {
+      sf::Event event;
+      while (window.pollEvent(event))
+      {
            if(event.type == sf::Event::Closed)
                 {
                     window.close();  
                 }
         
-         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-         {
-            choice++;
-         }
-         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-         {
-            choice--;
-         }    
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            {
+               choice++;
+               if(choice>4)
+                  choice = 4;   
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            {
+               choice--;
+               if(choice<0)
+                  choice = 0;
+            }    
                      
 
-        menu.updateMenu(event, window);    
-        party.updateParty(event, window, choice);
-        items.updateItems(event, window, choice);
-        magic.updateMagic(event, window, choice);
-        quit.updateQuit(event, window, choice);
-       }
+         menu.updateMenu(event, window);    
+         party.updateParty(event, window, choice);
+         items.updateItems(event, window, choice);
+         magic.updateMagic(event, window, choice);
+         quit.updateQuit(event, window, choice);
+         window.draw(rect);
 
-       //window.clear(sf::Color::Black);
-       if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-       {
-            window.draw(rect);
             window.draw(menu);
             window.draw(party);
             window.draw(items);
             window.draw(magic);
             window.draw(quit);
+
+         //window.display();
+        
+      }
+
+      //  //window.clear(sf::Color::Black);
+      //  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+      //  {
             
-       }
+            
+      //  }
        
        //window.draw(rect);
        
 
-       window.display();
+       //window.display();
    }
 }
 
-int updateChoice(int &choice)
+void mainMenu(sf::RenderWindow &window)
 {
-   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+   sf::RectangleShape rect(sf::Vector2f(128.0f, 128.0f));
+   rect.setFillColor(sf::Color::Black);
+   rect.setScale(1600.0f, 900.0f);
+
+   Button start;
+   start.setText("START");
+   start.setPosition({640, 25});
+   start.setSize({200, 71});
+   start.setColor(sf::Color::Black);
+   start.setColorTextHover(sf::Color::White);
+   start.setColorTextNormal(sf::Color::White);
+
+   Button exit;
+   exit.setText("QUIT");
+   exit.setPosition({640, 125});
+   exit.setSize({200, 71});
+   exit.setColor(sf::Color::Black);
+   exit.setColorTextHover(sf::Color::White);
+   exit.setColorTextNormal(sf::Color::White);
+
+   int mainChoice;
+   while (window.isOpen())
    {
-      choice++;
+      sf::Event event;
+      while (window.pollEvent(event))
+      {
+           if(event.type == sf::Event::Closed)
+                {
+                    window.close();  
+                }
+        
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            {
+               mainChoice++;
+               if(mainChoice>2)
+                  mainChoice = 2;   
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            {
+               mainChoice--;
+               if(mainChoice<0)
+                  mainChoice = 0;
+            }    
+                     
+
+         start.updateStart(event, window, mainChoice);
+         exit.updateExit(event, window, mainChoice);
+         window.draw(rect);
+
+            window.draw(start);
+            window.draw(exit);
+
+         //window.display();
+        
+      }
    }
-   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-   {
-      choice--;
-   }
-   return choice;
 }
