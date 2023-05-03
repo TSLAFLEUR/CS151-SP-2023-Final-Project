@@ -62,6 +62,7 @@ int main()
             {
                 window.draw(gameWorld.gameTiles[i][j]->sprite);
             }
+            displayMenu(window);
         }
         // Update the window
         characterWalking(character,myPaladin,myWhiteMage,myBlackMage,myFighter,window,font,1);

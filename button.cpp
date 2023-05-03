@@ -99,56 +99,12 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Colo
 
 void Button::updateMenu(sf::Event& e, sf::RenderWindow& window)
 {
-    //get position of the mouse
-    //sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-    sf::Vector2f mousePosition = window.mapPixelToCoords(mousePos);
-    bool mouseInButton =    mousePosition.x >= mButton.getPosition().x - mButton.getGlobalBounds().width/2
-                            && mousePosition.x <= mButton.getPosition().x + mButton.getGlobalBounds().width/2
-                            && mousePosition.y >= mButton.getPosition().y - mButton.getGlobalBounds().height/2
-                            && mousePosition.y <= mButton.getPosition().y + mButton.getGlobalBounds().height/2;
-    if(e.type == sf::Event::MouseMoved)
-    {
-        if(mouseInButton)
-        {
-            mText.setFillColor(mTextHover);
-        }
-        else
-        {
-            mText.setFillColor(mTextNormal);
-        }
-    }
-    
-        
-    /*
-    if (e.type == sf::Event::MouseButtonReleased)
-    {
-        if (e.mouseButton.button==sf::Mouse::Left)
-        {
-            if(mouseInButton)
-            {
-                mText.setFillColor(mTextHover);
-                mButton.setRotation(0);
-            }
-                    else
-                    {
-                        mText.setFillColor(mTextNormal);
-                        mButton.setRotation(0);
-                    }
-                }
-            }*/
+    mText.setFillColor(mTextNormal);
 }
 
 void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
 {
-    //get position of the mouse
-    //sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-    sf::Vector2f mousePosition = window.mapPixelToCoords(mousePos);
-    bool mouseInButton =    mousePosition.x >= mButton.getPosition().x - mButton.getGlobalBounds().width/2
-                            && mousePosition.x <= mButton.getPosition().x + mButton.getGlobalBounds().width/2
-                            && mousePosition.y >= mButton.getPosition().y - mButton.getGlobalBounds().height/2
-                            && mousePosition.y <= mButton.getPosition().y + mButton.getGlobalBounds().height/2;
+    
     if(choice==1)
     {
         mText.setFillColor(mTextHover);
@@ -157,34 +113,22 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
     {
         mText.setFillColor(mTextNormal);
     }
-    if (e.type == sf::Event::MouseButtonPressed)
+    if (choice== 1 && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
     {
-        if(e.mouseButton.button==sf::Mouse::Left)
-        {
-            if(mouseInButton)
-            {
+        
                 
-                sf::RectangleShape rect(sf::Vector2f(128.0f, 128.0f));
+                sf::RectangleShape rect(sf::Vector2f(1600.0f, 900.0f));
+
                 rect.setFillColor(sf::Color::Black);
-                rect.setScale(800.0f, 500.0f);
+                rect.setScale(1600.0f, 900.0f);
                 window.draw(rect);
-                /*
-                window.draw(rect);
-                Button back;
-                back.setText("BACK");
-                back.setPosition({400, 425});
-                back.setSize({200, 71});
-                back.setColor(sf::Color(0,0,0));
-                back.setColorTextHover(sf::Color::Green);
-                back.setColorTextNormal(sf::Color::Red);
-                window.draw(back);
-                */
+            
 
                sf::RectangleShape partyMem1(sf::Vector2f(128.0f, 128.0f));
                partyMem1.setFillColor(sf::Color::Blue);
                partyMem1.setSize({300, 50});
                
-               partyMem1.setPosition({640, 100});
+               partyMem1.setPosition({650, 100});
                partyMem1.setOrigin(partyMem1.getLocalBounds().width/2, partyMem1.getLocalBounds().height/2);
                sf::Text pm1Text;
                pm1Text.setFont(mFont);
@@ -199,7 +143,7 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
                partyMem2.setFillColor(sf::Color::Blue);
                partyMem2.setSize({300, 50});
                
-               partyMem2.setPosition({640, 200});
+               partyMem2.setPosition({650, 200});
                partyMem2.setOrigin(partyMem2.getLocalBounds().width/2, partyMem2.getLocalBounds().height/2);
                sf::Text pm2Text;
                pm2Text.setFont(mFont);
@@ -214,7 +158,7 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
                partyMem3.setFillColor(sf::Color::Blue);
                partyMem3.setSize({300, 50});
                
-               partyMem3.setPosition({640, 300});
+               partyMem3.setPosition({650, 300});
                partyMem3.setOrigin(partyMem3.getLocalBounds().width/2, partyMem3.getLocalBounds().height/2);
                sf::Text pm3Text;
                pm3Text.setFont(mFont);
@@ -229,7 +173,7 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
                partyMem4.setFillColor(sf::Color::Blue);
                partyMem4.setSize({300, 50});
                
-               partyMem4.setPosition({640, 400});
+               partyMem4.setPosition({650, 400});
                partyMem4.setOrigin(partyMem4.getLocalBounds().width/2, partyMem4.getLocalBounds().height/2);
                sf::Text pm4Text;
                pm4Text.setFont(mFont);
@@ -239,13 +183,12 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
                //pm4Text.setCharacterSize(24);
                window.draw(partyMem4);
                window.draw(pm4Text);
+               //window.display();
             }
             else
             {
                 
             }
-        }
-    }
 }
 
 void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
@@ -258,32 +201,25 @@ void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
                             && mousePosition.x <= mButton.getPosition().x + mButton.getGlobalBounds().width/2
                             && mousePosition.y >= mButton.getPosition().y - mButton.getGlobalBounds().height/2
                             && mousePosition.y <= mButton.getPosition().y + mButton.getGlobalBounds().height/2;
-    if(e.type == sf::Event::MouseMoved)
+    if(choice==2)
     {
-        if(mouseInButton)
-        {
-            mText.setFillColor(mTextHover);
-        }
-        else
-        {
-            mText.setFillColor(mTextNormal);
-        }
+        mText.setFillColor(mTextHover);
     }
-    if (e.type == sf::Event::MouseButtonPressed)
+    else
     {
-        if(e.mouseButton.button==sf::Mouse::Left)
-        {
-            if(mouseInButton)
-            {
+        mText.setFillColor(mTextNormal);
+    }
+    if (choice == 2 && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+    {
                 sf::RectangleShape rect(sf::Vector2f(128.0f, 128.0f));
                 rect.setFillColor(sf::Color::Black);
-                rect.setScale(800.0f, 500.0f);
+                rect.setScale(1600.0f, 900.0f);
                 window.draw(rect);
 
                 sf::RectangleShape item1(sf::Vector2f(128.0f, 128.0f));
                 item1.setSize({300, 50});
                 item1.setFillColor(sf::Color::Red);
-                item1.setPosition({640, 100});
+                item1.setPosition({650, 100});
                 item1.setOrigin(item1.getLocalBounds().width/2, item1.getLocalBounds().height/2);
                 sf::Text i1text;
                 i1text.setFont(mFont);
@@ -297,7 +233,7 @@ void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item2(sf::Vector2f(128.0f, 128.0f));
                 item2.setSize({300, 50});
                 item2.setFillColor(sf::Color::Red);
-                item2.setPosition({640, 200});
+                item2.setPosition({650, 200});
                 item2.setOrigin(item2.getLocalBounds().width/2, item2.getLocalBounds().height/2);
                 sf::Text i2text;
                 i2text.setFont(mFont);
@@ -311,7 +247,7 @@ void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item3(sf::Vector2f(128.0f, 128.0f));
                 item3.setSize({300, 50});
                 item3.setFillColor(sf::Color::Red);
-                item3.setPosition({640, 300});
+                item3.setPosition({650, 300});
                 item3.setOrigin(item3.getLocalBounds().width/2, item3.getLocalBounds().height/2);
                 sf::Text i3text;
                 i3text.setFont(mFont);
@@ -325,7 +261,7 @@ void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item4(sf::Vector2f(128.0f, 128.0f));
                 item4.setSize({300, 50});
                 item4.setFillColor(sf::Color::Red);
-                item4.setPosition({640, 400});
+                item4.setPosition({650, 400});
                 item4.setOrigin(item4.getLocalBounds().width/2, item4.getLocalBounds().height/2);
                 sf::Text i4text;
                 i4text.setFont(mFont);
@@ -334,52 +270,36 @@ void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
                 i4text.setPosition(item4.getPosition().x, item4.getPosition().y-10);
                 window.draw(item4);
                 window.draw(i4text);
+                window.display();
 
             }
             else
             {
                 
             }
-        }
-    }
 }
 
 void Button::updateMagic(sf::Event& e, sf::RenderWindow& window, int choice)
 {
-    //get position of the mouse
-    //sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-    sf::Vector2f mousePosition = window.mapPixelToCoords(mousePos);
-    bool mouseInButton =    mousePosition.x >= mButton.getPosition().x - mButton.getGlobalBounds().width/2
-                            && mousePosition.x <= mButton.getPosition().x + mButton.getGlobalBounds().width/2
-                            && mousePosition.y >= mButton.getPosition().y - mButton.getGlobalBounds().height/2
-                            && mousePosition.y <= mButton.getPosition().y + mButton.getGlobalBounds().height/2;
-    if(e.type == sf::Event::MouseMoved)
+    if(choice==3)
     {
-        if(mouseInButton)
-        {
-            mText.setFillColor(mTextHover);
-        }
-        else
-        {
-            mText.setFillColor(mTextNormal);
-        }
+        mText.setFillColor(mTextHover);
     }
-    if (e.type == sf::Event::MouseButtonPressed)
+    else
     {
-        if(e.mouseButton.button==sf::Mouse::Left)
-        {
-            if(mouseInButton)
-            {
+        mText.setFillColor(mTextNormal);
+    }
+    if (choice== 3 && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+    {
                 sf::RectangleShape rect(sf::Vector2f(128.0f, 128.0f));
                 rect.setFillColor(sf::Color::Black);
-                rect.setScale(800.0f, 500.0f);
+                rect.setScale(1600.0f, 900.0f);
                 window.draw(rect);
 
                 sf::RectangleShape item1(sf::Vector2f(128.0f, 128.0f));
                 item1.setSize({300, 50});
                 item1.setFillColor(sf::Color::Magenta);
-                item1.setPosition({640, 100});
+                item1.setPosition({650, 100});
                 item1.setOrigin(item1.getLocalBounds().width/2, item1.getLocalBounds().height/2);
                 sf::Text i1text;
                 i1text.setFont(mFont);
@@ -387,20 +307,20 @@ void Button::updateMagic(sf::Event& e, sf::RenderWindow& window, int choice)
                 i1text.setOrigin(i1text.getLocalBounds().width/2, i1text.getLocalBounds().height/2);
                 i1text.setPosition(item1.getPosition().x, item1.getPosition().y-10);
 
-                sf::CircleShape icon1(20);
-                icon1.setFillColor(sf::Color::Magenta);
-                icon1.setPosition({440, 100});
-                icon1.setOrigin(icon1.getLocalBounds().width/2, icon1.getLocalBounds().height/2);
+                //sf::CircleShape icon1(20);
+                //icon1.setFillColor(sf::Color::Magenta);
+                //icon1.setPosition({440, 100});
+                //icon1.setOrigin(icon1.getLocalBounds().width/2, icon1.getLocalBounds().height/2);
 
                 window.draw(item1);
                 window.draw(i1text);
-                window.draw(icon1);
+                //window.draw(icon1);
 
                 //second section
                 sf::RectangleShape item2(sf::Vector2f(128.0f, 128.0f));
                 item2.setSize({300, 50});
                 item2.setFillColor(sf::Color::Magenta);
-                item2.setPosition({640, 200});
+                item2.setPosition({650, 200});
                 item2.setOrigin(item2.getLocalBounds().width/2, item2.getLocalBounds().height/2);
                 sf::Text i2text;
                 i2text.setFont(mFont);
@@ -408,20 +328,20 @@ void Button::updateMagic(sf::Event& e, sf::RenderWindow& window, int choice)
                 i2text.setOrigin(i2text.getLocalBounds().width/2, i2text.getLocalBounds().height/2);
                 i2text.setPosition(item2.getPosition().x, item2.getPosition().y-10);
 
-                sf::CircleShape icon2(20);
-                icon2.setFillColor(sf::Color::Magenta);
-                icon2.setPosition({440, 200});
-                icon2.setOrigin(icon2.getLocalBounds().width/2, icon2.getLocalBounds().height/2);
+                // sf::CircleShape icon2(20);
+                // icon2.setFillColor(sf::Color::Magenta);
+                // icon2.setPosition({440, 200});
+                // icon2.setOrigin(icon2.getLocalBounds().width/2, icon2.getLocalBounds().height/2);
 
                 window.draw(item2);
                 window.draw(i2text);
-                window.draw(icon2);
+                //window.draw(icon2);
 
                 //third section
                 sf::RectangleShape item3(sf::Vector2f(128.0f, 128.0f));
                 item3.setSize({300, 50});
                 item3.setFillColor(sf::Color::Magenta);
-                item3.setPosition({640, 300});
+                item3.setPosition({650, 300});
                 item3.setOrigin(item3.getLocalBounds().width/2, item3.getLocalBounds().height/2);
                 sf::Text i3text;
                 i3text.setFont(mFont);
@@ -429,20 +349,20 @@ void Button::updateMagic(sf::Event& e, sf::RenderWindow& window, int choice)
                 i3text.setOrigin(i3text.getLocalBounds().width/2, i3text.getLocalBounds().height/2);
                 i3text.setPosition(item3.getPosition().x, item3.getPosition().y-10);
 
-                sf::CircleShape icon3(20);
-                icon3.setFillColor(sf::Color::Magenta);
-                icon3.setPosition({440, 300});
-                icon3.setOrigin(icon3.getLocalBounds().width/2, icon3.getLocalBounds().height/2);
+                // sf::CircleShape icon3(20);
+                // icon3.setFillColor(sf::Color::Magenta);
+                // icon3.setPosition({440, 300});
+                // icon3.setOrigin(icon3.getLocalBounds().width/2, icon3.getLocalBounds().height/2);
 
                 window.draw(item3);
                 window.draw(i3text);
-                window.draw(icon3);
+                //window.draw(icon3);
 
                 //fourth section
                 sf::RectangleShape item4(sf::Vector2f(128.0f, 128.0f));
                 item4.setSize({300, 50});
                 item4.setFillColor(sf::Color::Magenta);
-                item4.setPosition({640, 400});
+                item4.setPosition({650, 400});
                 item4.setOrigin(item4.getLocalBounds().width/2, item4.getLocalBounds().height/2);
                 sf::Text i4text;
                 i4text.setFont(mFont);
@@ -450,58 +370,38 @@ void Button::updateMagic(sf::Event& e, sf::RenderWindow& window, int choice)
                 i4text.setOrigin(i4text.getLocalBounds().width/2, i4text.getLocalBounds().height/2);
                 i4text.setPosition(item4.getPosition().x, item4.getPosition().y-10);
 
-                sf::CircleShape icon4(20);
-                icon4.setFillColor(sf::Color::Magenta);
-                icon4.setPosition({440, 400});
-                icon4.setOrigin(icon4.getLocalBounds().width/2, icon4.getLocalBounds().height/2);
+                // sf::CircleShape icon4(20);
+                // icon4.setFillColor(sf::Color::Magenta);
+                // icon4.setPosition({440, 400});
+                // icon4.setOrigin(icon4.getLocalBounds().width/2, icon4.getLocalBounds().height/2);
 
                 window.draw(item4);
                 window.draw(i4text);
-                window.draw(icon4);
+                //window.draw(icon4);
+                window.display();
             }
             else
             {
                 
             }
-        }
-    }
 }
 
 void Button::updateQuit(sf::Event& e, sf::RenderWindow& window, int choice)
 {
-    //get position of the mouse
-    //sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-    sf::Vector2f mousePosition = window.mapPixelToCoords(mousePos);
-    bool mouseInButton =    mousePosition.x >= mButton.getPosition().x - mButton.getGlobalBounds().width/2
-                            && mousePosition.x <= mButton.getPosition().x + mButton.getGlobalBounds().width/2
-                            && mousePosition.y >= mButton.getPosition().y - mButton.getGlobalBounds().height/2
-                            && mousePosition.y <= mButton.getPosition().y + mButton.getGlobalBounds().height/2;
-    if(e.type == sf::Event::MouseMoved)
+    if(choice==4)
     {
-        if(mouseInButton)
-        {
-            mText.setFillColor(mTextHover);
-        }
-        else
-        {
-            mText.setFillColor(mTextNormal);
-        }
+        mText.setFillColor(mTextHover);
     }
-    if (e.type == sf::Event::MouseButtonPressed)
+    else
     {
-        if(e.mouseButton.button==sf::Mouse::Left)
-        {
-            if(mouseInButton)
-            {
-                exit(1);
-            }
-            else
-            {
-                
-            }
-        }
+        mText.setFillColor(mTextNormal);
     }
+    if (choice== 4 && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+    {
+        exit(1);
+    }
+    window.display();
+    
 }
 
 void Button::draw(sf::RenderTarget& target,sf::RenderStates states) const
@@ -545,4 +445,38 @@ void Button::setSize(sf::Vector2f  size)
 void Button::setColor(sf::Color btnColor)
 {
     mButton.setColor(btnColor);
+}
+
+void Button::updateStart(sf::Event& e, sf::RenderWindow& window, int mainChoice)
+{
+    if(mainChoice==1)
+    {
+        mText.setFillColor(mTextHover);
+    }
+    else
+    {
+        mText.setFillColor(mTextNormal);
+    }
+    if (mainChoice== 1 && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+    {
+        //michaels overworld loop
+    }
+    window.display();
+}
+
+void Button::updateExit(sf::Event& e, sf::RenderWindow& window, int mainChoice)
+{
+    if(mainChoice==2)
+    {
+        mText.setFillColor(mTextHover);
+    }
+    else
+    {
+        mText.setFillColor(mTextNormal);
+    }
+    if (mainChoice== 2 && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+    {
+        exit(1);
+    }
+    window.display();
 }
