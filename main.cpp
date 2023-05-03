@@ -39,7 +39,7 @@ int main()
     {
         timeSinceLastUpdate += clock.restart();
         //  Process events
-        sf::Time start = clock.restart();
+        //sf::Time start = clock.restart();
         sf::Event event;
         while (window.pollEvent(event))
         {
