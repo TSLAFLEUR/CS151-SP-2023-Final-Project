@@ -36,29 +36,13 @@ public:
     sf::Uint32 getState(){return mBtnState;};
 
     //This function update the button state and/or look
-    void updateMenu(sf::Event& e, sf::RenderWindow& window);
-    void updateParty(sf::Event& e, sf::RenderWindow& window, int choice);
-    void updateItems(sf::Event& e, sf::RenderWindow& window, int choice);
-    void updateMagic(sf::Event& e, sf::RenderWindow& window, int choice);
-    void updateQuit(sf::Event& e, sf::RenderWindow& window, int choice);
+    void updateMenu(sf::RenderWindow& window);
+    void updateParty(sf::RenderWindow& window, int choice);
+    void updateItems(sf::RenderWindow& window, int choice);
+    void updateMagic(sf::RenderWindow& window, int choice);
+    void updateQuit(sf::RenderWindow& window, int choice);
     void updateStart(sf::Event& e, sf::RenderWindow& window, int mainChoice);
     void updateExit(sf::Event& e, sf::RenderWindow& window, int mainChoice);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
     virtual void draw(sf::RenderTarget& target,sf::RenderStates states) const;
 
