@@ -19,6 +19,7 @@
 
 const std::string spriteSelection[5] = {"Buff", "Warrior", "Magician", "Mage", "enemy"};
 const int charOffset[4] = {0, 16, 32, 48};
+
 struct spriteWalk
 {
 public:
