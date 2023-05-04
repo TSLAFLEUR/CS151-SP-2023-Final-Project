@@ -75,6 +75,8 @@ g++ *.cpp -o FinalDuck -lsfml-system -lsfml-window -lsfml-graphics
 <!--Screen Shots and explaining-->
 ## This is the start screen for the game  
 ![StartScreen][StS]  
+## Menu if you press escape
+![Menu][MNU]
 ## This is the "Overworld" where part of the game you move around and can encounter enemies
 ![Overworld][ORW]  
 ## This is the battle sequence of the game 
@@ -96,6 +98,7 @@ g++ *.cpp -o FinalDuck -lsfml-system -lsfml-window -lsfml-graphics
   * I would have also liked to create more items for the players to use, such as an ether to regain MP
 
 [StS]: https://cdn.discordapp.com/attachments/1053728427426992248/1103506185568649277/image.png
+[MNU]: https://cdn.discordapp.com/attachments/1053728427426992248/1103514699385012295/image.png
 [ORW]: https://cdn.discordapp.com/attachments/1053728427426992248/1103371470329098240/image.png
-[BS]: https://cdn.discordapp.com/attachments/1053728427426992248/1103371184755724288/image.png
+[BS]: https://cdn.discordapp.com/attachments/1053728427426992248/1103514297830735882/image.png
 [GO]: https://cdn.discordapp.com/attachments/1053728427426992248/1103371929420824576/image.png
