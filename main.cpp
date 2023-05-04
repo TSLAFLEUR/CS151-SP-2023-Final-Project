@@ -39,6 +39,7 @@ int main()
             gameWorld.gameTiles[i][j]->sprite.scale(sf::Vector2f(4.f, 4.f));
         }
     }
+    mainMenu(window,font);
     while (window.isOpen())
     {
         timeSinceLastUpdate += clock.restart();
@@ -65,6 +66,9 @@ int main()
         window.draw(character.charSprite);
         window.display();
         window.clear();
+        if(!combatPartyActive(myPaladin,myWhiteMage,myBlackMage,myFighter)){
+            gameOver(window,font);
+        }
         // sf::sleep(start + TIME_PER_FRAME - clock.getElapsedTime());
     }
     return EXIT_SUCCESS;

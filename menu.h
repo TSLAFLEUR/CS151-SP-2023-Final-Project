@@ -3,4 +3,4 @@
 #include <iostream>
 
 void displayMenu(sf::RenderWindow &window);
-int updateChoice(int &choice);
+void mainMenu(sf::RenderWindow &window,sf::Font &font);
