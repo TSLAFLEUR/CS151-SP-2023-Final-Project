@@ -23,7 +23,7 @@ const sf::Time TIME_PER_FRAME = sf::seconds(1.f / 60.f);
 int main()
 {
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(1600, 900), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(1600, 900), "FINAL DUCKS");
     window.setFramerateLimit(60);
     // Load a sprite to display
     spriteWalk character(spriteSelection[1]);
@@ -49,7 +49,7 @@ int main()
             gameWorld.gameTiles[i][j]->sprite.scale(sf::Vector2f(4.f, 4.f));
         }
     }
-    mainMenu(window,font);
+    mainMenu(window, font);
     while (window.isOpen())
     {
         timeSinceLastUpdate += clock.restart();
@@ -76,8 +76,9 @@ int main()
         window.draw(character.charSprite);
         window.display();
         window.clear();
-        if(!combatPartyActive(myPaladin,myWhiteMage,myBlackMage,myFighter)){
-            gameOver(window,font);
+        if (!combatPartyActive(myPaladin, myWhiteMage, myBlackMage, myFighter))
+        {
+            gameOver(window, font);
         }
         // sf::sleep(start + TIME_PER_FRAME - clock.getElapsedTime());
     }
