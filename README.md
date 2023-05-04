@@ -65,7 +65,9 @@ g++ *.cpp -o FF1 -lsfml-system -lsfml-window -lsfml-graphics
 * Michael:  
   * I would have liked to dedicate more time to the project, giving ample time to create a full dungeon
   * Most of the project is very scalable on my side but time limitations hurt a project of this scope
-* Zack:  
+* Zack:
+  * I would have liked to improve on the menu by adding transition animations as well as animated icons for spells and items
+  * I think that adding sound would have been interesting as well but we just didn't have the time.
   
 * Tyler:  
 
