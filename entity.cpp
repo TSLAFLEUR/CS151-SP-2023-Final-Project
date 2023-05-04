@@ -1,3 +1,14 @@
+/**
+ * @file entity.cpp
+ * @author Tyler LaFleur
+ * @brief This file contains all function definitions for entity, player, enemy, and job classes
+ * @version 0.1
+ * @date 2023-05-03
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #include "entity.h"
 
 //Entity
@@ -42,6 +53,13 @@ Paladin::Paladin():Player(){
     setmaxspeed(6+rand()%6+rand()%6+rand()%6);
 }
 
+/**
+ * @brief deal physical and magical damage to enemy
+ * 
+ * @param target 
+ * @return true 
+ * @return false 
+ */
 bool Paladin::smite(Entity &target){
     int damage=((getmgcAtk()+getphysAtk())-(target.getmgcDef()/2));
     if(damage<=0){
@@ -58,6 +76,7 @@ bool Paladin::smite(Entity &target){
     }
     return false;
 }
+
 //White Mage
 WhiteMage::WhiteMage():Player(){
     setType('w');
@@ -71,6 +90,13 @@ WhiteMage::WhiteMage():Player(){
     setmaxspeed(10+rand()%10+rand()%10+rand()%10);
 }
 
+/**
+ * @brief Heal party member equal to magic attack
+ * 
+ * @param target 
+ * @return true 
+ * @return false 
+ */
 bool WhiteMage::cure(Entity &target){
     if(getMP()>=5){
         target.setHP(target.getHP()+getmgcAtk());
@@ -97,6 +123,13 @@ BlackMage::BlackMage():Player(){
     setmaxspeed(8+rand()%8+rand()%8+rand()%8);
 }
 
+/**
+ * @brief deal magical damage against enemy
+ * 
+ * @param target 
+ * @return true 
+ * @return false 
+ */
 bool BlackMage::fire(Entity &target){
     int damage=(this->getmgcAtk()*2-(target.getmgcDef()/2));
     if(damage<=0){
@@ -127,6 +160,13 @@ Fighter::Fighter():Player(){
     setmaxspeed(8+rand()%8+rand()%8+rand()%8);
 }
 
+/**
+ * @brief Deal physical damage to enemy
+ * 
+ * @param target 
+ * @return true 
+ * @return false 
+ */
 bool Fighter::slash(Entity &target){
     int damage=(this->getphysAtk()*2-(target.getphysDef()/2));
     if(damage<=0){

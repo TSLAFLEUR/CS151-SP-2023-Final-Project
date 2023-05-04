@@ -1,3 +1,14 @@
+/**
+ * @file combat.cpp
+ * @author Tyler LaFleur
+ * @brief This file contains all function definitions for combat.h 
+ * @version 0.1
+ * @date 2023-05-03
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #include "combat.h"
 
 /**
@@ -64,8 +75,10 @@ bool fight(sf::Font &font,Entity p,sf::RenderWindow &window,Enemy &e){//done
     while(i!=0){
         i=1;
         while(window.pollEvent(event)){
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed){
                 window.close();
+                exit(1);
+            }
             if(event.type==sf::Event::KeyPressed){
                 if(event.key.code==sf::Keyboard::Enter){
                     if(choice==1){//fight
@@ -122,8 +135,10 @@ bool skillMagic(sf::Font &font,Entity a,Paladin &p,WhiteMage &w,BlackMage &b,Fig
         while(i!=0){
             i=1;
             while(window.pollEvent(event)){
-                if (event.type == sf::Event::Closed)
+                if (event.type == sf::Event::Closed){
                     window.close();
+                    exit(1);
+                }
                 if(event.type==sf::Event::KeyPressed){
                     if(event.key.code==sf::Keyboard::Enter){
                         if(choice==1){//fight
@@ -158,8 +173,10 @@ bool skillMagic(sf::Font &font,Entity a,Paladin &p,WhiteMage &w,BlackMage &b,Fig
         while(i!=0){
         i=1;
         while(window.pollEvent(event)){
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed){
                 window.close();
+                exit(1);
+            }
             if(event.type==sf::Event::KeyPressed){
                 if(event.key.code==sf::Keyboard::Enter){
                     if(choice==1){
@@ -235,8 +252,10 @@ bool items(sf::Font &font,Entity a,Paladin &p,WhiteMage &w,BlackMage &b,Fighter 
     while(i!=0){
         i=1;
         while(window.pollEvent(event)){
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed){
                 window.close();
+                exit(1);
+                }
             if(event.type==sf::Event::KeyPressed){
                 if(event.key.code==sf::Keyboard::Enter){
                     if(choice==1){
@@ -478,8 +497,10 @@ bool combatChoice(sf::Font &font,Entity a,Paladin &p,WhiteMage &w,BlackMage &b,F
         madeCombatDecision=false;
         while(window.pollEvent(event)){
             // Close window: exit
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed){
                 window.close();
+                exit(1);
+            }
             if(event.type==sf::Event::KeyPressed){
                 if(event.key.code==sf::Keyboard::Down){
                     if(height<120){
@@ -595,6 +616,7 @@ bool combatEnemyActive(Enemy &e){
  * @return int 
  */
 int combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &window, sf::Font &font, int encounter){
+    //create turn queue
     std::queue<Entity> init;
     Enemy enemy[1];
     bool validTarget;
@@ -603,10 +625,12 @@ int combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &wi
     init.push(p);
     init.push(w);
     init.push(enemy[0]);
+    //display graphics
     displayCombat(p,w,b,f,window,font);
     displayEnemy(enemy[0],window,font);
+
     bool run=false;
-    while(combatPartyActive(p,w,b,f)&&combatEnemyActive(enemy[0]))
+    while(combatPartyActive(p,w,b,f)&&combatEnemyActive(enemy[0]))//while party and enemies are live
     {
         if(init.front().getType()=='p'){//if paladin's turn
             if(!p.isDefeated()){
@@ -632,10 +656,10 @@ int combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &wi
                 init.push(init.front());
             }
             init.pop();
-        } else if(init.front().getType()=='e'){
+        } else if(init.front().getType()=='e'){//if enemy's turn
             validTarget=false;
             while(!validTarget){
-                switch(rand()%4){
+                switch(rand()%4){//choose a target at random, trying a new target if target is knocked out
                     case(0):
                         if(!p.isDefeated()){
                             combatEnemyAction(p,enemy[0]);
@@ -671,18 +695,18 @@ int combat(Paladin &p,WhiteMage &w,BlackMage &b,Fighter &f, sf::RenderWindow &wi
             init.pop();//remove current turn from front
             }
         }
-        if(run){
+        if(run){//if party decides to run, end combat
             return 2;
         }
         displayCombat(p,w,b,f,window,font);
         displayEnemy(enemy[0],window,font);
     }
     
-    if(!combatEnemyActive(enemy[0])){
+    if(!combatEnemyActive(enemy[0])){//if enemy is dead, return with victory
         displayAction("VICTORY",window,font);
         return 1;
     }
-    if(!combatPartyActive(p,w,b,f)){
+    if(!combatPartyActive(p,w,b,f)){//if party is dead, return with game over
         return 0;
     }
     return 0;
