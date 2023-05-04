@@ -54,7 +54,7 @@ void characterWalking(spriteWalk &character,Paladin &p,WhiteMage &w,BlackMage &b
             character.charSprite.move(-2.f, 0.f);
             // if (clock.getElapsedTime().asSeconds() > 1.0f)
             //{
-                character.charCoords[0]--;
+                character.charCoords[0] -= 2;
                 pollCounter++;
             if (rand()%100==0){
                 combat(p,w,b,f,window,font,1);
@@ -75,7 +75,7 @@ void characterWalking(spriteWalk &character,Paladin &p,WhiteMage &w,BlackMage &b
             // left key is pressed: move our character
             // character.charSprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
             character.charSprite.move(0.f, -2.f);
-            character.charCoords[1]--;
+            character.charCoords[1] -= 2;
             pollCounter++;
             if (rand()%100==0){
                 combat(p,w,b,f,window,font,1);
@@ -95,7 +95,7 @@ void characterWalking(spriteWalk &character,Paladin &p,WhiteMage &w,BlackMage &b
             // left key is pressed: move our character
             // character.charSprite.setTextureRect(sf::IntRect(64, 0, 16, 16));
             character.charSprite.move(2.f, 0.f);
-            character.charCoords[0]++;
+            character.charCoords[0] += 2;
             pollCounter++;
             if (rand()%100==0){
                 combat(p,w,b,f,window,font,1);
@@ -116,7 +116,7 @@ void characterWalking(spriteWalk &character,Paladin &p,WhiteMage &w,BlackMage &b
             // left key is pressed: move our character
             // character.charSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
             character.charSprite.move(0.f,2.f);
-            character.charCoords[1]++;
+            character.charCoords[1] += 2;
             pollCounter++;
             if (rand()%100==0){
                 combat(p,w,b,f,window,font,1);

@@ -45,7 +45,7 @@ void displayAction(string s,sf::RenderWindow &window,sf::Font &font){
     victoryText.setPosition(window.getSize().x/2,window.getSize().y/5);
     window.draw(victoryText);
     window.display();
-    usleep(1500000);
+    usleep(450000);
 }
 
 /**
