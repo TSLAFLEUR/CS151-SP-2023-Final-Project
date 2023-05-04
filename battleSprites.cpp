@@ -7,7 +7,7 @@ battleSprites::battleSprites()
 }
 battleSprites::battleSprites(std::string name)
 {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 5; i++)
     {
         if (name == spriteSelection[i])
         {
@@ -21,28 +21,47 @@ battleSprites::battleSprites(std::string name)
             offset = charOffset[0];
         }
     }
-    charTexture.loadFromFile("battlesprites.png");
-    charSprite.setTexture(charTexture);
+
     charSprite.scale(sf::Vector2f(4.f, 4.f));
     if (characterChoice == spriteSelection[2])
     {
+        charTexture.loadFromFile("battlesprites.png");
+        charSprite.setTexture(charTexture);
         offset = battleSpriteOffset[2];
         charSprite.move(1050.f, 23.f);
+        charSprite.setTextureRect(sf::IntRect(0, offset, 24, 24));
     }
     else if (characterChoice == spriteSelection[3])
     {
+        charTexture.loadFromFile("battlesprites.png");
+        charSprite.setTexture(charTexture);
         offset = battleSpriteOffset[3];
         charSprite.move(1050.f, 161.f);
+        charSprite.setTextureRect(sf::IntRect(0, offset, 24, 24));
     }
     else if (characterChoice == spriteSelection[1])
     {
+        charTexture.loadFromFile("battlesprites.png");
+        charSprite.setTexture(charTexture);
         offset = battleSpriteOffset[1];
         charSprite.move(1050.f, 299.f);
+        charSprite.setTextureRect(sf::IntRect(0, offset, 24, 24));
+    }
+    else if (characterChoice == spriteSelection[0])
+    {
+        charTexture.loadFromFile("battlesprites.png");
+        charSprite.setTexture(charTexture);
+        offset = battleSpriteOffset[0];
+        charSprite.move(1050.f, 437.f);
+        charSprite.setTextureRect(sf::IntRect(0, offset, 24, 24));
     }
     else
     {
-        offset = battleSpriteOffset[0];
-        charSprite.move(1050.f, 437.f);
+        charTexture.loadFromFile("goblin.png");
+        charSprite.setTexture(charTexture);
+        offset = 0;
+        charSprite.move(50.f, 50.f);
+        charSprite.setTextureRect(sf::IntRect(0, offset, 48, 48));
+        charSprite.scale(sf::Vector2f(2.f, 2.f));
     }
-    charSprite.setTextureRect(sf::IntRect(0, offset, 24, 24));
 }
