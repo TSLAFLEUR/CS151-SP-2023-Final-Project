@@ -1,3 +1,11 @@
+/**
+ * @file battleSprites.h
+ * @author Michael J Habermann
+ * @brief Header file for the battlesprites
+ * @date 2023-05-04
+ * 
+ * 
+ */
 #pragma once
 
 #include <iostream>
@@ -11,7 +19,6 @@ const int battleSpriteOffset[4] = {0,24,48,72};
 struct battleSprites
 {
 public:
-    battleSprites();
     battleSprites(std::string name);
     // void loadCharTexture();
     void loadCharSprite();

@@ -1,10 +1,17 @@
+/**
+ * @file battleSprites.cpp
+ * @author Michael J Habermann
+ * @brief Functions for the battlesprites
+ * @date 2023-05-04
+ *
+ */
 #include "battleSprites.h"
 
-battleSprites::battleSprites()
-{
-    characterChoice = spriteSelection[0];
-    charTexture.loadFromFile("battlesprites.png");
-}
+/**
+ * @brief Construct a new battle Sprites::battle Sprites object
+ * 
+ * @param name The name of the sprite you want to pull up1
+ */
 battleSprites::battleSprites(std::string name)
 {
     for (int i = 0; i < 5; i++)
