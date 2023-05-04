@@ -1,5 +1,20 @@
+/**
+ * @file menu.cpp
+ * @author Zackary Morrow
+ * @brief implementation file for menu related functions
+ * @version 0.1
+ * @date 2023-05-03
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #include "button.h"
 
+/**
+ * @brief displays the menu and updates all buttons
+ * 
+ * @param window is window on the which the menu will be displayed
+ */
 void displayMenu(sf::RenderWindow &window)
 {
    sf::RectangleShape rect(sf::Vector2f(128.0f, 128.0f));
@@ -115,6 +130,12 @@ void displayMenu(sf::RenderWindow &window)
    }
 }
 
+/**
+ * @brief displays the main start menu for the game
+ * 
+ * @param window the window on which the start menu will be displayed
+ * @param font a font used for the menu
+ */
 void mainMenu(sf::RenderWindow &window,sf::Font &font)
 {
    sf::RectangleShape rect(sf::Vector2f(window.getSize().x,window.getSize().y));

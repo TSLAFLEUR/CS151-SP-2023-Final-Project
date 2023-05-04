@@ -1,7 +1,7 @@
 /**
  * @file button.cpp
  * @author Zackary Morrow
- * @brief Implementation file
+ * @brief Implementation file for button related functions
  * @version 0.1
  * @date 2023-03-09
  *
@@ -111,13 +111,19 @@ Button::Button(std::string s, sf::Vector2f position, sf::Vector2f size, sf::Colo
 
 /**
  * @brief updates the menu button in the main menu
- * @param window 
+ * @param window is the main window passed to it
  */
 void Button::updateMenu(sf::RenderWindow &window)
 {
     mText.setFillColor(mTextNormal);
 }
 
+/**
+ * @brief updates the party button
+ * 
+ * @param window is the main window passed to it
+ * @param choice is what button the user currently has selected
+ */
 void Button::updateParty(sf::RenderWindow &window, int choice)
 {
 
@@ -204,6 +210,12 @@ void Button::updateParty(sf::RenderWindow &window, int choice)
     }
 }
 
+/**
+ * @brief updates the items menu selections
+ * 
+ * @param window is the main window passed to it
+ * @param choice is what button the user currently has selected
+ */
 void Button::updateItems(sf::RenderWindow &window, int choice)
 {
     if (choice == 2)
@@ -282,6 +294,12 @@ void Button::updateItems(sf::RenderWindow &window, int choice)
     }
 }
 
+/**
+ * @brief updates the magic button
+ * 
+ * @param window is the main window passed to it
+ * @param choice is what button the user currently has selected
+ */
 void Button::updateMagic(sf::RenderWindow &window, int choice)
 {
     if (choice == 3)
@@ -365,6 +383,12 @@ void Button::updateMagic(sf::RenderWindow &window, int choice)
     }
 }
 
+/**
+ * @brief updates the quit button
+ * 
+ * @param window is the main window passed to it
+ * @param choice is what button the user currently has selected
+ */
 void Button::updateQuit(sf::RenderWindow &window, int choice)
 {
     if (choice == 4)
@@ -382,12 +406,23 @@ void Button::updateQuit(sf::RenderWindow &window, int choice)
     window.display();
 }
 
+/**
+ * @brief draws an button on the window
+ * 
+ * @param target is the button passed to it
+ * @param states is the buttons status
+ */
 void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     target.draw(mButton, states);
     target.draw(mText, states);
 }
 
+/**
+ * @brief sets the text on the button
+ * 
+ * @param s is the string to be used for the button
+ */
 void Button::setText(std::string s)
 {
     unsigned int fontSize = mButton.getGlobalBounds().height / 2;
@@ -398,6 +433,11 @@ void Button::setText(std::string s)
     mText.setString(s);
 }
 
+/**
+ * @brief sets position of an object
+ * 
+ * @param position is the coordinates where the object will be located
+ */
 void Button::setPosition(sf::Vector2f position)
 {
     mPosition = position;
@@ -409,6 +449,11 @@ void Button::setPosition(sf::Vector2f position)
     // set position at the middle of the button
 }
 
+/**
+ * @brief sets the size of a button
+ * 
+ * @param size the dimensions the button will be set to
+ */
 void Button::setSize(sf::Vector2f size)
 {
     mButton.setScale(size.x / mButton.getGlobalBounds().width, size.y / mButton.getGlobalBounds().height);
@@ -419,11 +464,23 @@ void Button::setSize(sf::Vector2f size)
     // set position at the middle of the button
 }
 
+/**
+ * @brief changes the color of the button texture
+ * 
+ * @param btnColor is the color the button will be
+ */
 void Button::setColor(sf::Color btnColor)
 {
     mButton.setColor(btnColor);
 }
 
+/**
+ * @brief updates the main menus start button and checks if it is clicked
+ * 
+ * @param e event
+ * @param window is the main window which is passed to it
+ * @param mainChoice is what button the user currently has selected
+ */
 void Button::updateStart(sf::Event &e, sf::RenderWindow &window, int mainChoice)
 {
     if (mainChoice == 1)
@@ -441,6 +498,13 @@ void Button::updateStart(sf::Event &e, sf::RenderWindow &window, int mainChoice)
     window.display();
 }
 
+/**
+ * @brief updates the quit button on the main menu
+ * 
+ * @param e event
+ * @param window the main window which is passed to it
+ * @param mainChoice is what button the user currently has selected
+ */
 void Button::updateExit(sf::Event &e, sf::RenderWindow &window, int mainChoice)
 {
     if (mainChoice == 2)

@@ -1,4 +1,14 @@
-//g++ -std=c++11 *.cpp -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+/**
+ * @file button.h
+ * @author Zackary Morrow
+ * @brief declaration file for button related functions
+ * @version 0.1
+ * @date 2023-05-03
+ * 
+ * @copyright Copyright (c) 2023
+ * Compile command: g++ -std=c++11 *.cpp -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+ */
+
 
 #ifndef BUTTON_H
 #define BUTTON_H
