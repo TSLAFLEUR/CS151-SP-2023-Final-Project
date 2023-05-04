@@ -1,5 +1,4 @@
 #include "combat.h"
-
 bool fight(sf::Font &font,Entity p,sf::RenderWindow &window,Enemy &e){//done
     sf::Event event;
     int choice=1;
@@ -84,7 +83,12 @@ bool run(){
     return true;
 }
 
-void displayCombat(const Paladin &myPaladin,const WhiteMage &myWhiteMage,const BlackMage &myBlackMage, const Fighter &myFighter,sf::RenderWindow &window,sf::Font &font){
+void displayCombat(Paladin &myPaladin,WhiteMage &myWhiteMage,BlackMage 
+        &myBlackMage, Fighter &myFighter,sf::RenderWindow &window,sf::Font &font){
+    battleSprites testy1(spriteSelection[0]);
+    battleSprites testy2(spriteSelection[1]);
+    battleSprites testy3(spriteSelection[2]);
+    battleSprites testy4(spriteSelection[3]);
     sf::RectangleShape combat(sf::Vector2f(window.getSize().x,window.getSize().y));
     combat.setFillColor(sf::Color::Black);
     window.draw(combat);
@@ -192,6 +196,50 @@ void displayCombat(const Paladin &myPaladin,const WhiteMage &myWhiteMage,const B
     window.draw(sm);
     window.draw(items);
     window.draw(run);
+    if(myPaladin.isDefeated() == true)
+    {
+        testy3.offset = battleSpriteOffset[2] + 96;
+        testy3.charSprite.setTextureRect(sf::IntRect(0, testy3.offset, 24, 24));
+    }
+    else
+    {
+        testy3.offset = battleSpriteOffset[2];
+        testy3.charSprite.setTextureRect(sf::IntRect(0, testy3.offset, 24, 24));
+    }
+        if(myWhiteMage.isDefeated() == true)
+    {
+        testy4.offset = battleSpriteOffset[3] + 96;
+        testy4.charSprite.setTextureRect(sf::IntRect(0, testy4.offset, 24, 24));
+    }
+    else
+    {
+        testy4.offset = battleSpriteOffset[3];
+        testy4.charSprite.setTextureRect(sf::IntRect(0, testy4.offset, 24, 24));
+    }
+        if(myBlackMage.isDefeated() == true)
+    {
+        testy2.offset = battleSpriteOffset[1] + 96;
+        testy2.charSprite.setTextureRect(sf::IntRect(0, testy2.offset, 24, 24));
+    }
+    else
+    {
+        testy2.offset = battleSpriteOffset[1];
+        testy2.charSprite.setTextureRect(sf::IntRect(0, testy2.offset, 24, 24));
+    }
+        if(myFighter.isDefeated() == true)
+    {
+        testy1.offset = battleSpriteOffset[0] + 96;
+        testy1.charSprite.setTextureRect(sf::IntRect(0, testy1.offset, 24, 24));
+    }
+    else
+    {
+        testy1.offset = battleSpriteOffset[0];
+        testy1.charSprite.setTextureRect(sf::IntRect(0, testy1.offset, 24, 24));
+    }
+    window.draw(testy1.charSprite);
+    window.draw(testy2.charSprite);
+    window.draw(testy3.charSprite);
+    window.draw(testy4.charSprite);
     window.display();
 }
 

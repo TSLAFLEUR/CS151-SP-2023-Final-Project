@@ -2,7 +2,7 @@
 #define COMBAT_H
 
 #include "entity.h"
-
+#include "battleSprites.h"
 bool fight(sf::Font &font,Entity p,sf::RenderWindow &window,Enemy &e);
 bool skillMagic(sf::Font &font,Entity p,sf::RenderWindow &window,Entity &e);
 bool items();
