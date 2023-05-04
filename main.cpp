@@ -1,3 +1,13 @@
+/**
+ * @file main.cpp
+ * @author Tyler L, Michael H, Zackary M
+ * @brief the main game loop
+ * @version 0.1
+ * @date 2023-05-03
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #include "entity.h"
 #include "combat.h"
 #include "button.h"
