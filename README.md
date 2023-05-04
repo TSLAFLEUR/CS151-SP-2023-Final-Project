@@ -95,7 +95,7 @@ g++ *.cpp -o FinalDuck -lsfml-system -lsfml-window -lsfml-graphics
   * I would have liked to create a battle system that supported multiple enemies instead of just one, as well as create more enemy types.
   * I would have also liked to create more items for the players to use, such as an ether to regain MP
 
-[StS]: https://cdn.discordapp.com/attachments/1053728427426992248/1103371470329098240/image.png
+[StS]: https://cdn.discordapp.com/attachments/1053728427426992248/1103506185568649277/image.png
 [ORW]: https://cdn.discordapp.com/attachments/1053728427426992248/1103371470329098240/image.png
 [BS]: https://cdn.discordapp.com/attachments/1053728427426992248/1103371184755724288/image.png
 [GO]: https://cdn.discordapp.com/attachments/1053728427426992248/1103371929420824576/image.png
