@@ -326,6 +326,7 @@ void displayCombat(Paladin &myPaladin,WhiteMage &myWhiteMage,BlackMage &myBlackM
     battleSprites testy2(spriteSelection[1]);
     battleSprites testy3(spriteSelection[2]);
     battleSprites testy4(spriteSelection[3]);
+    battleSprites testy5(spriteSelection[4]);
     sf::RectangleShape combat(sf::Vector2f(window.getSize().x,window.getSize().y));
     combat.setFillColor(sf::Color::Black);
     window.draw(combat);
@@ -477,6 +478,7 @@ void displayCombat(Paladin &myPaladin,WhiteMage &myWhiteMage,BlackMage &myBlackM
     window.draw(testy2.charSprite);
     window.draw(testy3.charSprite);
     window.draw(testy4.charSprite);
+    window.draw(testy5.charSprite);
     window.display();
 }
 
