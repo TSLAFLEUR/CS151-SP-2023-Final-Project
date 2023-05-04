@@ -11,7 +11,7 @@ const sf::Time TIME_PER_FRAME = sf::seconds(1.f / 60.f);
 int main()
 {
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(1600, 900), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML window");
     // Load a sprite to display
     spriteWalk character(spriteSelection[3]);
     character.charSprite.scale(sf::Vector2f(4.f, 4.f));
@@ -62,7 +62,7 @@ int main()
             {
                 window.draw(gameWorld.gameTiles[i][j]->sprite);
             }
-            displayMenu(window);
+            //displayMenu(window);
         }
         // Update the window
         characterWalking(character,myPaladin,myWhiteMage,myBlackMage,myFighter,window,font,1);

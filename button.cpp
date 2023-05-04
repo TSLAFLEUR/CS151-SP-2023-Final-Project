@@ -128,7 +128,7 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
                partyMem1.setFillColor(sf::Color::Blue);
                partyMem1.setSize({300, 50});
                
-               partyMem1.setPosition({650, 100});
+               partyMem1.setPosition(sf::Vector2f(window.getSize().x/2,2*window.getSize().y/9));
                partyMem1.setOrigin(partyMem1.getLocalBounds().width/2, partyMem1.getLocalBounds().height/2);
                sf::Text pm1Text;
                pm1Text.setFont(mFont);
@@ -143,7 +143,7 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
                partyMem2.setFillColor(sf::Color::Blue);
                partyMem2.setSize({300, 50});
                
-               partyMem2.setPosition({650, 200});
+               partyMem2.setPosition(sf::Vector2f(window.getSize().x/2,3*window.getSize().y/9));
                partyMem2.setOrigin(partyMem2.getLocalBounds().width/2, partyMem2.getLocalBounds().height/2);
                sf::Text pm2Text;
                pm2Text.setFont(mFont);
@@ -158,7 +158,7 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
                partyMem3.setFillColor(sf::Color::Blue);
                partyMem3.setSize({300, 50});
                
-               partyMem3.setPosition({650, 300});
+               partyMem3.setPosition(sf::Vector2f(window.getSize().x/2,4*window.getSize().y/9));
                partyMem3.setOrigin(partyMem3.getLocalBounds().width/2, partyMem3.getLocalBounds().height/2);
                sf::Text pm3Text;
                pm3Text.setFont(mFont);
@@ -173,7 +173,7 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
                partyMem4.setFillColor(sf::Color::Blue);
                partyMem4.setSize({300, 50});
                
-               partyMem4.setPosition({650, 400});
+               partyMem4.setPosition(sf::Vector2f(window.getSize().x/2,5*window.getSize().y/9));
                partyMem4.setOrigin(partyMem4.getLocalBounds().width/2, partyMem4.getLocalBounds().height/2);
                sf::Text pm4Text;
                pm4Text.setFont(mFont);
@@ -193,14 +193,6 @@ void Button::updateParty(sf::Event& e, sf::RenderWindow& window, int choice)
 
 void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
 {
-    //get position of the mouse
-    //sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-    sf::Vector2f mousePosition = window.mapPixelToCoords(mousePos);
-    bool mouseInButton =    mousePosition.x >= mButton.getPosition().x - mButton.getGlobalBounds().width/2
-                            && mousePosition.x <= mButton.getPosition().x + mButton.getGlobalBounds().width/2
-                            && mousePosition.y >= mButton.getPosition().y - mButton.getGlobalBounds().height/2
-                            && mousePosition.y <= mButton.getPosition().y + mButton.getGlobalBounds().height/2;
     if(choice==2)
     {
         mText.setFillColor(mTextHover);
@@ -219,7 +211,7 @@ void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item1(sf::Vector2f(128.0f, 128.0f));
                 item1.setSize({300, 50});
                 item1.setFillColor(sf::Color::Red);
-                item1.setPosition({650, 100});
+                item1.setPosition(sf::Vector2f(window.getSize().x/2,2*window.getSize().y/9));
                 item1.setOrigin(item1.getLocalBounds().width/2, item1.getLocalBounds().height/2);
                 sf::Text i1text;
                 i1text.setFont(mFont);
@@ -233,7 +225,7 @@ void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item2(sf::Vector2f(128.0f, 128.0f));
                 item2.setSize({300, 50});
                 item2.setFillColor(sf::Color::Red);
-                item2.setPosition({650, 200});
+                item2.setPosition(sf::Vector2f(window.getSize().x/2,3*window.getSize().y/9));
                 item2.setOrigin(item2.getLocalBounds().width/2, item2.getLocalBounds().height/2);
                 sf::Text i2text;
                 i2text.setFont(mFont);
@@ -247,7 +239,7 @@ void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item3(sf::Vector2f(128.0f, 128.0f));
                 item3.setSize({300, 50});
                 item3.setFillColor(sf::Color::Red);
-                item3.setPosition({650, 300});
+                item3.setPosition(sf::Vector2f(window.getSize().x/2,4*window.getSize().y/9));
                 item3.setOrigin(item3.getLocalBounds().width/2, item3.getLocalBounds().height/2);
                 sf::Text i3text;
                 i3text.setFont(mFont);
@@ -261,7 +253,7 @@ void Button::updateItems(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item4(sf::Vector2f(128.0f, 128.0f));
                 item4.setSize({300, 50});
                 item4.setFillColor(sf::Color::Red);
-                item4.setPosition({650, 400});
+                item4.setPosition(sf::Vector2f(window.getSize().x/2,5*window.getSize().y/9));
                 item4.setOrigin(item4.getLocalBounds().width/2, item4.getLocalBounds().height/2);
                 sf::Text i4text;
                 i4text.setFont(mFont);
@@ -299,18 +291,13 @@ void Button::updateMagic(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item1(sf::Vector2f(128.0f, 128.0f));
                 item1.setSize({300, 50});
                 item1.setFillColor(sf::Color::Magenta);
-                item1.setPosition({650, 100});
+                item1.setPosition(sf::Vector2f(window.getSize().x/2,2*window.getSize().y/9));
                 item1.setOrigin(item1.getLocalBounds().width/2, item1.getLocalBounds().height/2);
                 sf::Text i1text;
                 i1text.setFont(mFont);
                 i1text.setString("Spell 1");
                 i1text.setOrigin(i1text.getLocalBounds().width/2, i1text.getLocalBounds().height/2);
                 i1text.setPosition(item1.getPosition().x, item1.getPosition().y-10);
-
-                //sf::CircleShape icon1(20);
-                //icon1.setFillColor(sf::Color::Magenta);
-                //icon1.setPosition({440, 100});
-                //icon1.setOrigin(icon1.getLocalBounds().width/2, icon1.getLocalBounds().height/2);
 
                 window.draw(item1);
                 window.draw(i1text);
@@ -320,7 +307,7 @@ void Button::updateMagic(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item2(sf::Vector2f(128.0f, 128.0f));
                 item2.setSize({300, 50});
                 item2.setFillColor(sf::Color::Magenta);
-                item2.setPosition({650, 200});
+                item2.setPosition(sf::Vector2f(window.getSize().x/2,3*window.getSize().y/9));
                 item2.setOrigin(item2.getLocalBounds().width/2, item2.getLocalBounds().height/2);
                 sf::Text i2text;
                 i2text.setFont(mFont);
@@ -341,7 +328,7 @@ void Button::updateMagic(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item3(sf::Vector2f(128.0f, 128.0f));
                 item3.setSize({300, 50});
                 item3.setFillColor(sf::Color::Magenta);
-                item3.setPosition({650, 300});
+                item3.setPosition(sf::Vector2f(window.getSize().x/2,4*window.getSize().y/9));
                 item3.setOrigin(item3.getLocalBounds().width/2, item3.getLocalBounds().height/2);
                 sf::Text i3text;
                 i3text.setFont(mFont);
@@ -362,7 +349,7 @@ void Button::updateMagic(sf::Event& e, sf::RenderWindow& window, int choice)
                 sf::RectangleShape item4(sf::Vector2f(128.0f, 128.0f));
                 item4.setSize({300, 50});
                 item4.setFillColor(sf::Color::Magenta);
-                item4.setPosition({650, 400});
+                item4.setPosition(sf::Vector2f(window.getSize().x/2,5*window.getSize().y/9));
                 item4.setOrigin(item4.getLocalBounds().width/2, item4.getLocalBounds().height/2);
                 sf::Text i4text;
                 i4text.setFont(mFont);
