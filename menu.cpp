@@ -56,7 +56,7 @@ void displayMenu(sf::RenderWindow &window)
    quit.setColorTextHover(sf::Color::Green);
    quit.setColorTextNormal(sf::Color::Red);
 //test
-   int choice;
+   int choice=0;
    while (window.isOpen())
    {
       sf::Event event;
@@ -76,13 +76,13 @@ void displayMenu(sf::RenderWindow &window)
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             {
                choice--;
-               if(choice<0)
-                  choice = 0;
+               if(choice<1)
+                  choice = 1;
             }    
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-            {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
                return;
             }
+                     
 
          menu.updateMenu(event, window);    
          party.updateParty(event, window, choice);
@@ -103,31 +103,44 @@ void displayMenu(sf::RenderWindow &window)
    }
 }
 
-void mainMenu(sf::RenderWindow &window)
+void mainMenu(sf::RenderWindow &window,sf::Font &font)
 {
-   sf::RectangleShape rect(sf::Vector2f(128.0f, 128.0f));
+   sf::RectangleShape rect(sf::Vector2f(window.getSize().x,window.getSize().y));
    rect.setFillColor(sf::Color::Black);
-   rect.setScale(1600.0f, 900.0f);
+   //rect.setScale(1600.0f, 900.0f);
+
+   sf::Text title;
+   title.setFont(font);
+   //title.setOrigin(0,title.getLocalBounds().height/2);
+   title.setPosition(window.getSize().x/6,2*window.getSize().y/8);
+   title.setScale(4,3);
+   title.setString("FINAL DUCK");
+   window.draw(title);
 
    Button start;
    start.setText("START");
-   start.setPosition(sf::Vector2f(window.getSize().x/2,window.getSize().y-800));
+   start.setPosition(sf::Vector2f(window.getSize().x/2,4*window.getSize().y/8));
    start.setSize({200, 71});
    start.setColor(sf::Color::Black);
-   start.setColorTextHover(sf::Color::White);
+   start.setColorTextHover(sf::Color::Red);
    start.setColorTextNormal(sf::Color::White);
 
    Button exit;
    exit.setText("QUIT");
-   exit.setPosition(sf::Vector2f(window.getSize().x/2,window.getSize().y-600));
+   exit.setPosition(sf::Vector2f(window.getSize().x/2,5*window.getSize().y/8));
    exit.setSize({200, 71});
    exit.setColor(sf::Color::Black);
-   exit.setColorTextHover(sf::Color::White);
+   exit.setColorTextHover(sf::Color::Red);
    exit.setColorTextNormal(sf::Color::White);
 
-   int mainChoice;
+   int mainChoice=0;
+   window.draw(rect);
+   window.draw(start);
+   window.draw(exit);
+   window.display();
    while (window.isOpen())
    {
+      
       sf::Event event;
       while (window.pollEvent(event))
       {
@@ -138,26 +151,31 @@ void mainMenu(sf::RenderWindow &window)
         
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
             {
-               mainChoice++;
-               if(mainChoice>2)
-                  mainChoice = 2;   
+               if(mainChoice<2){
+                  mainChoice++;
+               } 
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             {
-               mainChoice--;
-               if(mainChoice<0)
-                  mainChoice = 0;
+               if(mainChoice>1){
+                  mainChoice--;
+               }
             }    
-                     
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+               if(mainChoice==1){
+                  return;
+               }else if(mainChoice==2){
+                  window.close();
+               }
+            }
 
          start.updateStart(event, window, mainChoice);
          exit.updateExit(event, window, mainChoice);
          window.draw(rect);
-
-            window.draw(start);
-            window.draw(exit);
-
-         //window.display();
+         window.draw(title);
+         window.draw(start);
+         window.draw(exit);
+         window.display();
         
       }
    }
