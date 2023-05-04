@@ -15,7 +15,7 @@ public:
     spriteWalk();
     spriteWalk(std::string name);
     // void loadCharTexture();
-    void loadCharSprite();
+    //void loadCharSprite();
     sf::Texture charTexture;
     // textureTile.loadFromFile("rpg_textures.png");
     sf::Sprite charSprite;

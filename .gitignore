@@ -30,3 +30,5 @@ test.cpp
 *.exe
 *.out
 *.app
+.vscode/settings.json
+FinalDuck
