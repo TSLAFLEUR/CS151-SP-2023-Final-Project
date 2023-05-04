@@ -30,5 +30,5 @@ test.cpp
 *.exe
 *.out
 *.app
-sfml-app
 .vscode/settings.json
+FinalDuck
