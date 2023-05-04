@@ -89,8 +89,8 @@ void displayMenu(sf::RenderWindow &window)
          if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
          {
             choice--;
-            if (choice < 0)
-               choice = 0;
+            if (choice < 1)
+               choice = 1;
          }
          if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
          {
