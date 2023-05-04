@@ -1,3 +1,14 @@
+/**
+ * @file entity.h
+ * @author Tyler LaFleur
+ * @brief This file contains all function prototypes for entity, player, enemy, and job classes
+ * @version 0.1
+ * @date 2023-05-03
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef ENTITY_H
 #define ENTITY_H
 
@@ -10,6 +21,10 @@
 
 using std::string;
 
+/**
+ * @brief Generic class for any being in game
+ * 
+ */
 class Entity{
 public:
     Entity();
@@ -78,11 +93,19 @@ private:
     int speed;
 };
 
+/**
+ * @brief Generic class for a player
+ * 
+ */
 class Player :public Entity{
 public: 
 private:
 };
 
+/**
+ * @brief Paladin job, tank
+ * 
+ */
 class Paladin :public Player{
 public:
     Paladin();
@@ -90,6 +113,10 @@ public:
 private:
 };
 
+/**
+ * @brief White mage job, healer
+ * 
+ */
 class WhiteMage :public Player{
 public:
     WhiteMage();
@@ -97,6 +124,10 @@ public:
 private:
 };
 
+/**
+ * @brief Black mage job, magic dps
+ * 
+ */
 class BlackMage :public Player{
 public:
     BlackMage();
@@ -104,6 +135,10 @@ public:
 private:
 };
 
+/**
+ * @brief Fighter job, physical dps
+ * 
+ */
 class Fighter :public Player{
 public:
     Fighter();

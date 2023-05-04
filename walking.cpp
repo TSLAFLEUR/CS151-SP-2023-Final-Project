@@ -125,6 +125,9 @@ void characterWalking(spriteWalk &character,Paladin &p,WhiteMage &w,BlackMage &b
             }
         }
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+            sf::RectangleShape combat(sf::Vector2f(window.getSize().x,window.getSize().y));
+    combat.setFillColor(sf::Color::Black);
+    window.draw(combat);
             displayMenu(window);
         }
 }

@@ -35,6 +35,7 @@ int main()
             gameWorld.gameTiles[i][j]->sprite.scale(sf::Vector2f(4.f, 4.f));
             }
         }
+    mainMenu(window,font);
     while (window.isOpen())
     {
         timeSinceLastUpdate += clock.restart();
@@ -62,7 +63,6 @@ int main()
             {
                 window.draw(gameWorld.gameTiles[i][j]->sprite);
             }
-            //displayMenu(window);
         }
         // Update the window
         characterWalking(character,myPaladin,myWhiteMage,myBlackMage,myFighter,window,font,1);

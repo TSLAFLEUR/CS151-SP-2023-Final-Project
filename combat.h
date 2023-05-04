@@ -1,3 +1,14 @@
+/**
+ * @file combat.h
+ * @author Tyler LaFleur
+ * @brief This file contains all function prototypes for the combat scenarios
+ * @version 0.1
+ * @date 2023-05-03
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef COMBAT_H
 #define COMBAT_H
 
